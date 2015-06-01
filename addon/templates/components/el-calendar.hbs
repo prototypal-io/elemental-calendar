@@ -13,10 +13,10 @@
     </tr>
     {{#each weeks as |week|}}
       <tr>
-        {{#each week as |day|}}
+        {{#each week.days as |day|}}
           <td>
-            {{day.dayOfWeek}}
-            {{day.plainDate}}
+            {{day.dayName}}
+            {{day.date}}
             {{#if day.events}}
               <strong>Events:</strong>
               {{#each day.events as |event|}}
@@ -28,4 +28,8 @@
       </tr>
     {{/each}}
   </table>
+{{/if}}
+
+{{#if weekly}}
+  Week template here
 {{/if}}
