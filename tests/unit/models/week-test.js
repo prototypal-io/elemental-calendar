@@ -5,5 +5,5 @@ QUnit.module('Unit — Week');
 
 test('Week.create returns the correct week', function (assert) {
   let week = Week.create({ date: '2015-06-19' });
-  assert.equal(week.days[0].date, '2015-06-14');
+  assert.equal(week.get('days.firstObject.date'), '2015-06-14');
 });

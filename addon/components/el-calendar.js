@@ -11,7 +11,7 @@ export default Ember.Component.extend({
 
   weeks: Ember.computed('date', function() {
     if (this.date) {
-      return Month.create({date: this.date, events: this.events}).weeks;
+      return Month.create({date: this.date, events: this.events}).get('weeks');
     }
   }),
 

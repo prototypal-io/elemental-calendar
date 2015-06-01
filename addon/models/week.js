@@ -4,29 +4,34 @@ import Month from 'el-calendar/models/month';
 import Day from 'el-calendar/models/day';
 
 let Week = Ember.Object.extend({
-  days: null,
   events: null,
 
   _momentDate: Ember.computed('date', function() {
     return moment(this.date, 'YYYY-MM-DD');
   }),
 
-  init() {
-    this._super(...arguments);
-    this.days = this.days || Ember.A();
-    this.events = this.events || Ember.A();
-
+  days: Ember.computed('date', function() {
     if (this.date) {
+      let days = Ember.A();
       let startOfWeekMoment = moment(this.get('_momentDate')).startOf('week');
       for (let i = 0; i < 7; i++) {
         let date = startOfWeekMoment.format('YYYY-MM-DD');
         let collectedEvents = this._collectEvents(this.events, date);
-        let day = Day.create({ date: date, events: collectedEvents });
-        day.dayName = moment().weekday(startOfWeekMoment.day()).format('dddd');
-        this.days.pushObject(day);
+        let day = Day.create({
+          date: date,
+          events: collectedEvents,
+          dayName: moment().weekday(startOfWeekMoment.day()).format('dddd')
+        });
+        days.pushObject(day);
         startOfWeekMoment.add(1, 'days');
       }
+      return days;
     }
+  }),
+
+  init() {
+    this._super(...arguments);
+    this.events = this.events || Ember.A();
   },
 
   previous(events) {
