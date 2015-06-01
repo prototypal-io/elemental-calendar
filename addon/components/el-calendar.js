@@ -9,11 +9,6 @@ export default Ember.Component.extend({
   date: null,
   events: null,
 
-  numberOfDays: Ember.computed('date', function() {
-    this._moment = moment(this.date, 'YYYY-MM-DD');
-    return this._moment.daysInMonth();
-  }),
-
   weeks: Ember.computed('date', function() {
     if (this.date) {
       return Month.create({date: this.date, events: this.events}).weeks;

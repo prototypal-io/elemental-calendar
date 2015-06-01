@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import moment from 'moment';
 import Week from 'el-calendar/models/week';
 import Day from 'el-calendar/models/day';
 
@@ -10,20 +11,8 @@ let Month = Ember.Object.extend({
   _numberOfDaysInPreviousMonth: null,
   _previousMonthDateArray: null,
 
-  _momentDate: Ember.computed('date', function() {
-    return moment(this.date, 'YYYY-MM-DD');
-  }),
-
-  _previousMonthMoment: Ember.computed('_momentDate', function() {
-    return moment(this.get('_momentDate')).subtract(1, 'months');
-  }),
-
-  _nextMonthMoment: Ember.computed('_momentDate', function() {
-    return moment(this.get('_momentDate')).add(1, 'months');
-  }),
-
   init() {
-    let momentDate = this.get('_momentDate');
+    let momentDate = this._momentDate();
 
     // http://momentjs.com/docs/#/displaying/days-in-month/
     let numberOfDaysInMonth = momentDate.daysInMonth();
@@ -65,42 +54,55 @@ let Month = Ember.Object.extend({
   },
 
   previous(events) {
-    return Month.create({ date:  this.get('_previousMonthMoment'), events: events });
+    return Month.create({ date:  this._previousMonthMoment(), events: events });
   },
 
   next(events) {
-    return Month.create({ date: this.get('_nextMonthMoment'), events: events });
+    return Month.create({ date: this._nextMonthMoment(), events: events });
+  },
+
+  _momentDate() {
+    return moment(this.date, 'YYYY-MM-DD');
+  },
+
+  _previousMonthMoment() {
+    return moment(this._momentDate()).subtract(1, 'months');
+  },
+
+  _nextMonthMoment() {
+    return moment(this._momentDate()).add(1, 'months');
   },
 
   _daysFromLastMonthSetup() {
     // this private var can get modified - it's not reliable
-    this._numberOfDaysInPreviousMonth = this.get('_previousMonthMoment').daysInMonth();
+    this._numberOfDaysInPreviousMonth = this._previousMonthMoment().daysInMonth();
   },
 
   _handleDaysFromLastMonth(firstWeekdayOfMonth) {
     for (let i = 0; i < firstWeekdayOfMonth; i++) {
-      let day = Day.create();
       let dayName = moment().weekday(firstWeekdayOfMonth - (i + 1)).format('dddd');
-      let previousMonthDateArray = this.get('_previousMonthMoment').toArray();
+      let previousMonthDateArray = this._previousMonthMoment().toArray();
       previousMonthDateArray[2] = this._numberOfDaysInPreviousMonth;
-      day.set('dayName', dayName);
-      day.set('date', moment(previousMonthDateArray).format('YYYY-MM-DD'));
+      let day = Day.create({
+        dayName: dayName,
+        date: moment(previousMonthDateArray).format('YYYY-MM-DD')
+      });
       this.weeks.get('lastObject.days').unshift(day);
       this._numberOfDaysInPreviousMonth--;
     }
   },
 
   _handleDayInCurrentMonth(currentDay, dayOfMonth) {
-    let day = Day.create();
     let dayName = moment().weekday(currentDay).format('dddd');
-    let dateArray = this.get('_momentDate').toArray();
+    let dateArray = this._momentDate().toArray();
     dateArray[2] = dayOfMonth;
     let date = moment(dateArray).format('YYYY-MM-DD');
     let collectedEvents = this._collectEvents(this.events, date);
-    day.set('dayName', dayName);
-    day.set('date', date);
+    let day = Day.create({
+      dayName: dayName,
+      date: date
+    });
     day.get('events').pushObjects(collectedEvents);
-
     this.weeks.get('lastObject.days').push(day);
     this.days.pushObject(day);
   },

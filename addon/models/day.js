@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import moment from 'moment';
 import Month from 'el-calendar/models/month';
 import Week from 'el-calendar/models/week';
 

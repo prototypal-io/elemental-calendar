@@ -1,4 +1,6 @@
 import Ember from 'ember';
+import moment from 'moment';
+import Month from 'el-calendar/models/month';
 import Day from 'el-calendar/models/day';
 
 let Week = Ember.Object.extend({
