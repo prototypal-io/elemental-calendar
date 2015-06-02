@@ -21,7 +21,7 @@ let Week = Ember.Object.extend({
         let eventList = EventList.create({ events: this.events });
         let day = Day.create({ date: date });
         day.set('events', eventList.forDay(day));
-
+        startOfWeekMoment.add(1, 'days');
         // day.set('events', EventList.forDay(day));
         days.pushObject(day);
       }

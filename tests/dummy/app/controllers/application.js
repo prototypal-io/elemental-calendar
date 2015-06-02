@@ -1,6 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+  date: "2015-06-24",
+  
   events: Ember.A([
     { name: 'Meeting with Joe', date: 'June 25, 2015, 2:30 pm' },
     { name: 'Coffee with Susan', date: 'June 27, 2015, 4:00 pm' },

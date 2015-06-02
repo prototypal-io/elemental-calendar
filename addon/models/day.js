@@ -11,14 +11,14 @@ let Day = Ember.Object.extend({
     return moment(this.date, 'YYYY-MM-DD');
   }),
 
+  dayName: Ember.computed('date', function() {
+    let weekday = this.get('_momentDate').day();
+    return moment().weekday(weekday).format('dddd');
+  }),
+
   init() {
     this._super(...arguments);
     this.events = this.events || Ember.A();
-  },
-
-  dayName() {
-    let weekday = this.get('_momentDate').day();
-    return moment().weekday(weekday).format('dddd');
   },
 
   previous(events) {

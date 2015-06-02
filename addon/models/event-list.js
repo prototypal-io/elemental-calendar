@@ -4,6 +4,6 @@ export default Ember.Object.extend({
   events: null,
 
   forDay(day) {
-    debugger;
+    console.log(day);
   }
 });
