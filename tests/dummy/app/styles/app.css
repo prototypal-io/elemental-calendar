@@ -16,45 +16,58 @@ body {
    font-weight: 300;
 }
 
-.sidebar {
-  float: left;
+.calendar-container {
+  display: flex;
+  padding: 2rem;
   height: 100vh;
 }
 
-.grid,
+.sidebar {
+  flex-grow: 1;
+  padding: 1rem;
+}
+
 .calendar {
-  display: table;
-  table-layout: fixed;
-  border-collapse: collapse;
-  width: 100%;
-  height: 100%;
+  display: flex;
+  flex-grow: 2;
+  flex-direction: column;
 }
 
 .row {
-  display: table-row;
-  height: 1px;
+  display: flex;
+  height: 3rem;
 }
 
 .week {
-  display: table-row;
+  display: flex;
+  flex-grow: 1;
+  flex-basis: 0;
+  border: 1px solid grey;
+  border-left: 0;
+  border-right: 0;
 }
 
 .cell,
 .day {
-  display: table-cell;
+  flex-grow: 1;
+  flex-basis: 0;
 }
 
 .cell {
-  padding: 1rem 0;
+  min-width: 6rem;
 }
 
 .day {
+  padding: 1rem;
+  min-width: 6rem;
+  min-height: 6rem;
   border: 1px solid grey;
-  border-color: currentColor;
-  height: 14vh;
+  border-top: 0;
+  border-bottom: 0;
 }
 
 .text-center {
   text-align: center;
 }
+
 
