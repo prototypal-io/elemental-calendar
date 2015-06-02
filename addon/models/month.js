@@ -7,7 +7,6 @@ let Month = Ember.Object.extend({
   events: null,
   days: null,
   _numberOfDaysInPreviousMonth: null,
-  _previousMonthDateArray: null,
 
   weeks: Ember.computed('date', function() {
     let momentDate = this._momentDate();

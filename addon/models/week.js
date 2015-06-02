@@ -2,6 +2,7 @@ import Ember from 'ember';
 import moment from 'moment';
 import Month from 'el-calendar/models/month';
 import Day from 'el-calendar/models/day';
+import EventList from 'el-calendar/models/event-list';
 
 let Week = Ember.Object.extend({
   events: null,
@@ -16,14 +17,13 @@ let Week = Ember.Object.extend({
       let startOfWeekMoment = moment(this.get('_momentDate')).startOf('week');
       for (let i = 0; i < 7; i++) {
         let date = startOfWeekMoment.format('YYYY-MM-DD');
-        let collectedEvents = this._collectEvents(this.events, date);
-        let day = Day.create({
-          date: date,
-          events: collectedEvents,
-          dayName: moment().weekday(startOfWeekMoment.day()).format('dddd')
-        });
+        // let collectedEvents = this._collectEvents(this.events, date);
+        let eventList = EventList.create({ events: this.events });
+        let day = Day.create({ date: date });
+        day.set('events', eventList.forDay(day));
+
+        // day.set('events', EventList.forDay(day));
         days.pushObject(day);
-        startOfWeekMoment.add(1, 'days');
       }
       return days;
     }

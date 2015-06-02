@@ -4,7 +4,6 @@ import Month from 'el-calendar/models/month';
 import Week from 'el-calendar/models/week';
 
 let Day = Ember.Object.extend({
-  dayName: null,
   events: null,
   date: null,
 
@@ -15,6 +14,11 @@ let Day = Ember.Object.extend({
   init() {
     this._super(...arguments);
     this.events = this.events || Ember.A();
+  },
+
+  dayName() {
+    let weekday = this.get('_momentDate').day();
+    return moment().weekday(weekday).format('dddd');
   },
 
   previous(events) {
