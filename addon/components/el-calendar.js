@@ -5,6 +5,7 @@ import Week from '../models/week';
 
 export default Ember.Component.extend({
   layout: layout,
+  tagName: '',
   type: 'monthly',
   date: null,
   events: null,

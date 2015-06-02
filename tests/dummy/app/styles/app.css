@@ -1,0 +1,60 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+   font-weight: 300;
+}
+
+.sidebar {
+  float: left;
+  height: 100vh;
+}
+
+.grid,
+.calendar {
+  display: table;
+  table-layout: fixed;
+  border-collapse: collapse;
+  width: 100%;
+  height: 100%;
+}
+
+.row {
+  display: table-row;
+  height: 1px;
+}
+
+.week {
+  display: table-row;
+}
+
+.cell,
+.day {
+  display: table-cell;
+}
+
+.cell {
+  padding: 1rem 0;
+}
+
+.day {
+  border: 1px solid grey;
+  border-color: currentColor;
+  height: 14vh;
+}
+
+.text-center {
+  text-align: center;
+}
+
