@@ -1,26 +1,44 @@
-<h2 id="title">Monthly Calendar</h2>
-<p>Today's Date: {{date}}</p>
+<div class="calendar-container">
+  <section class="sidebar">
+    <h2 id="title">Monthly Calendar</h2>
+    <p>Today's Date: {{date}}</p>
+  </section>
 
-{{#el-monthly-calendar date=date events=events as |weeks| }}
-  <table>
-    <tr>
-      <th>Sunday</th>
-      <th>Monday</th>
-      <th>Tuesday</th>
-      <th>Wednesday</th>
-      <th>Thursday</th>
-      <th>Friday</th>
-      <th>Saturday</th>
-    </tr>
-    {{#each weeks as |week|}}
-      <tr>
-        {{#each week.days as |day|}}
-          <td>
+  {{#el-monthly-calendar date=date events=events as |weeks| }}
+    <div class="calendar">
+      <div class="row">
+        <div class="cell">
+          Sunday
+        </div>
+        <div class="cell">
+          Monday
+        </div>
+        <div class="cell">
+          Tuesday
+        </div>
+        <div class="cell">
+          Wednesday
+        </div>
+        <div class="cell">
+          Thursday
+        </div>
+        <div class="cell">
+          Friday
+        </div>
+        <div class="cell">
+          Saturday
+        </div>
+      </div>
+      {{#each weeks as |week|}}
+        <div class="week">
+          {{#each week.days as |day|}}
+          <div class="day">
             {{day.dayName}}
             {{day.date}}
-          </td>
-        {{/each}}
-      </tr>
-    {{/each}}
-  </table>
-{{/el-monthly-calendar}}
+          </div>
+          {{/each}}
+        </div>
+      {{/each}}
+    </div>
+  {{/el-monthly-calendar}}
+</div>

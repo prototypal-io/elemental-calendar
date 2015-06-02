@@ -1,0 +1,73 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+   font-weight: 300;
+}
+
+.calendar-container {
+  display: flex;
+  padding: 2rem;
+  height: 100vh;
+}
+
+.sidebar {
+  flex-grow: 1;
+  padding: 1rem;
+}
+
+.calendar {
+  display: flex;
+  flex-grow: 2;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  height: 3rem;
+}
+
+.week {
+  display: flex;
+  flex-grow: 1;
+  flex-basis: 0;
+  border: 1px solid grey;
+  border-left: 0;
+  border-right: 0;
+}
+
+.cell,
+.day {
+  flex-grow: 1;
+  flex-basis: 0;
+}
+
+.cell {
+  min-width: 6rem;
+}
+
+.day {
+  padding: 1rem;
+  min-width: 6rem;
+  min-height: 6rem;
+  border: 1px solid grey;
+  border-top: 0;
+  border-bottom: 0;
+}
+
+.text-center {
+  text-align: center;
+}
+
+
