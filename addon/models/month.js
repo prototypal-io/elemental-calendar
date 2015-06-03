@@ -25,7 +25,7 @@ let Month = Ember.Object.extend({
     let firstWeek = Week.create({ date: firstWeekDate, eventList: this.eventList });
     weeks.pushObject(firstWeek);
     for (let i = 7; i < numberOfDaysInMonth; i += 7) {
-      let nextWeek = weeks.get('lastObject').next(this.events);
+      let nextWeek = weeks.get('lastObject').next(this.eventList);
       weeks.pushObject(nextWeek);
     }
     return weeks;
