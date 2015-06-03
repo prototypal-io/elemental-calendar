@@ -14,23 +14,26 @@ body {
 body {
    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
    font-weight: 300;
+   background: #052049;
 }
 
 .calendar-container {
   display: flex;
-  padding: 2rem;
   height: 100vh;
 }
 
 .sidebar {
   flex-grow: 1;
-  padding: 1rem;
+  padding: 1rem 2rem;
+  color: #EEE;
 }
 
 .calendar {
   display: flex;
   flex-grow: 2;
   flex-direction: column;
+  padding: 1rem 2rem 3rem;
+  background: #EEE;
 }
 
 .row {
@@ -42,9 +45,6 @@ body {
   display: flex;
   flex-grow: 1;
   flex-basis: 0;
-  border: 1px solid grey;
-  border-left: 0;
-  border-right: 0;
 }
 
 .cell,
@@ -57,13 +57,18 @@ body {
   min-width: 6rem;
 }
 
+.title {
+  font-weight: 700;
+  padding-bottom: 1rem;
+}
+
 .day {
   padding: 1rem;
   min-width: 6rem;
   min-height: 6rem;
   border: 1px solid grey;
-  border-top: 0;
-  border-bottom: 0;
+  margin-left: -1px;
+  margin-top: -1px;
 }
 
 .text-center {

@@ -4,6 +4,8 @@ import Week from 'el-calendar/models/week';
 
 export default Ember.Component.extend({
   layout: layout,
+  tagName: '',
+
   date: null,
   events: null,
 

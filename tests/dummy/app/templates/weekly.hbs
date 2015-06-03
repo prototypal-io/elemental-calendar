@@ -1,20 +1,37 @@
-<h2 id="title">Weekly Calendar</h2>
-<p>Today's Date: {{date}}</p>
+<div class="calendar-container">
+  <section class="sidebar">
+    <h2 id="title">Weekly Calendar</h2>
+    <p>Today's Date: {{date}}</p>
+  </section>
 
 {{#el-weekly-calendar date=date events=events as |days|}}
-  <table>
-    <tr>
-      <th>Sunday</th>
-      <th>Monday</th>
-      <th>Tuesday</th>
-      <th>Wednesday</th>
-      <th>Thursday</th>
-      <th>Friday</th>
-      <th>Saturday</th>
-    </tr>
-    <tr>
+    <div class="calendar">
+      <div class="row">
+        <div class="cell title">
+          Sunday
+        </div>
+        <div class="cell title">
+          Monday
+        </div>
+        <div class="cell title">
+          Tuesday
+        </div>
+        <div class="cell title">
+          Wednesday
+        </div>
+        <div class="cell title">
+          Thursday
+        </div>
+        <div class="cell title">
+          Friday
+        </div>
+        <div class="cell title">
+          Saturday
+        </div>
+      </div>
+    <div class="week">
     {{#each days as |day|}}
-      <td>
+      <div class="day">
         {{day.dayName}}
         {{day.date}}
         {{#each day.hours as |hour|}}
@@ -26,8 +43,9 @@
             {{/each}}
           {{/if}}
         {{/each}}
-      </td>
+      </div>
     {{/each}}
-    </tr>
-  </table>
+    </div>
+</div>
 {{/el-weekly-calendar}}
+</div>
