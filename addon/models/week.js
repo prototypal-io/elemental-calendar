@@ -7,25 +7,29 @@ import EventList from 'el-calendar/models/event-list';
 let Week = Ember.Object.extend({
   date: null,
   events: null,
+  eventList: null,
 
   _momentDate: Ember.computed('date', function() {
-    return moment(this.date, 'YYYY-MM-DD');
+    return moment(this.date);
   }),
 
   days: Ember.computed('_momentDate', function() {
     let days = Ember.A();
     let startOfWeekMoment = moment(this.get('_momentDate')).startOf('week');
-    let eventList = EventList.create({ events: this.events });
 
     for (let i = 0; i < 7; i++) {
-      let date = startOfWeekMoment.format('YYYY-MM-DD');
-      let day = Day.create({ date: date });
-      day.set('events', eventList.forDay(day));
+      let date = moment(startOfWeekMoment).toDate();
+      let day = Day.create({ date: date, eventList: this.eventList });
       startOfWeekMoment.add(1, 'days');
       days.pushObject(day);
     }
     return days;
   }),
+
+  init() {
+    this._super(...arguments);
+    this.eventList = this.eventList || EventList.create({ events: this.events });
+  },
 
   previous(events) {
     let previousWeek = moment(this.get('_momentDate')).subtract(1, 'weeks');
