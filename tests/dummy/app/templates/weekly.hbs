@@ -1,0 +1,33 @@
+<h2 id="title">Weekly Calendar</h2>
+<p>Today's Date: {{date}}</p>
+
+{{#el-weekly-calendar date=date events=events as |days|}}
+  <table>
+    <tr>
+      <th>Sunday</th>
+      <th>Monday</th>
+      <th>Tuesday</th>
+      <th>Wednesday</th>
+      <th>Thursday</th>
+      <th>Friday</th>
+      <th>Saturday</th>
+    </tr>
+    <tr>
+    {{#each days as |day|}}
+      <td>
+        {{day.dayName}}
+        {{day.date}}
+        {{#each day.hours as |hour|}}
+          {{hour.formattedHour}}
+          {{#if hour.events}}
+            <strong>Events:</strong>
+            {{#each hour.events as |event|}}
+              <strong>{{event.name}}</strong>
+            {{/each}}
+          {{/if}}
+        {{/each}}
+      </td>
+    {{/each}}
+    </tr>
+  </table>
+{{/el-weekly-calendar}}

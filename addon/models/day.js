@@ -2,6 +2,8 @@ import Ember from 'ember';
 import moment from 'moment';
 import Month from 'el-calendar/models/month';
 import Week from 'el-calendar/models/week';
+import EventList from 'el-calendar/models/event-list';
+import Hour from 'el-calendar/models/hour';
 
 let Day = Ember.Object.extend({
   events: null,
@@ -11,38 +13,32 @@ let Day = Ember.Object.extend({
     return moment(this.date, 'YYYY-MM-DD');
   }),
 
-  dayName: Ember.computed('date', function() {
+  dayName: Ember.computed('_momentDate', function() {
     let weekday = this.get('_momentDate').day();
     return moment().weekday(weekday).format('dddd');
   }),
 
-  init() {
-    this._super(...arguments);
-    this.events = this.events || Ember.A();
-  },
+  hours: Ember.computed('_momentDate', function() {
+    let hours = Ember.A();
+    let startOfDayMoment = moment(this.get('_momentDate')).startOf('day');
+    let eventList = EventList.create({ events: this.events });
 
-  previous(events) {
-    if (this.date) {
-      return Day.create({ date: this.get('_momentDate').subtract(1, 'days'), events: events });
+    for (let i = 0; i < 24; i++) {
+      let datetime = startOfDayMoment.format('YYYY-MM-DD h:mm a');
+      let hour = Hour.create({ datetime: datetime });
+      hour.set('events', eventList.forHour(hour));
+      startOfDayMoment.add(1, 'hours');
+      hours.pushObject(hour);
     }
-  },
-
-  next(events) {
-    if (this.date) {
-      return Day.create({ date: this.get('_momentDate').add(1, 'days'), events: events });
-    }
-  },
+    return hours;
+  }),
 
   week(events) {
-    if (this.date) {
-      return Week.create({ date: this.date, events: events });
-    }
+    return Week.create({ date: this.date, events: events });
   },
 
   month(events) {
-    if (this.date) {
-      return Month.create({ date: this.date, events: events });
-    }
+    return Month.create({ date: this.date, events: events });
   }
 });
 

@@ -4,11 +4,10 @@ import layout from '../templates/components/el-monthly-calendar';
 
 export default Ember.Component.extend({
   layout: layout,
-  tagName: '',
+  date: null,
+  events: null,
 
-  weeks: Ember.computed('date', function() {
-    if (this.date) {
-      return Month.create({date: this.date, events: this.events}).get('weeks');
-    }
+  month: Ember.computed('date', 'events', function() {
+    return Month.create({ date: this.date, events: this.events });
   })
 });
