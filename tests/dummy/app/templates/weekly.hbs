@@ -12,7 +12,7 @@
           {{#each days as |day|}}
             <div class="cell title">
               {{day.dayName}}
-              {{day.date}}
+              {{day.formattedDate}}
             </div>
           {{/each}}
         </div>
@@ -25,7 +25,7 @@
         {{#each days as |day|}}
           <div class="day">
             {{#each day.hours as |hour|}}
-              <div >
+              <div>
                 {{#each hour.events as |event|}}
                   <strong>
                     {{hour.formattedHour}}: {{event.name}}

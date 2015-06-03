@@ -6,10 +6,14 @@ export default Ember.Object.extend({
   datetime: null,
 
   _momentDateTime: Ember.computed('datetime', function() {
-    return moment(this.datetime, 'YYYY-MM-DD h:mm a');
+    return moment(this.datetime);
   }),
 
   formattedHour: Ember.computed('datetime', function() {
     return this.get('_momentDateTime').format('h:mm a');
-  })
+  }),
+
+  init() {
+    this.events = this.eventList.forHour(this);
+  }
 });
