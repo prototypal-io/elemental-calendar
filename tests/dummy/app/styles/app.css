@@ -47,8 +47,15 @@ body {
   flex-basis: 0;
 }
 
+.hours {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
 .cell,
-.day {
+.day,
+.hours {
   flex-grow: 1;
   flex-basis: 0;
 }
