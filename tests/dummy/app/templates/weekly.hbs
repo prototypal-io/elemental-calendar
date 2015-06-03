@@ -25,7 +25,7 @@
         {{#each days as |day|}}
           <div class="day">
             {{#each day.hours as |hour|}}
-              <div class="event-hour">
+              <div >
                 {{#each hour.events as |event|}}
                   <strong>
                     {{hour.formattedHour}}: {{event.name}}

@@ -63,8 +63,9 @@ body {
   flex-basis: 0;
 }
 
-.event-hour {
-  /* border: 1px solid grey; */
+.week-event {
+  border-bottom: 1px solid #DDD;
+  flex-grow: 1;
 }
 
 .cell {
@@ -76,7 +77,8 @@ body {
   padding-bottom: 1rem;
 }
 
-.day {
+.day,
+.week-day {
   padding: 1rem;
   min-width: 6rem;
   min-height: 6rem;
@@ -84,6 +86,14 @@ body {
   margin-left: -1px;
   margin-top: -1px;
 }
+
+.week-day {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 0;
+}
+
 
 .text-center {
   text-align: center;
