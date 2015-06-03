@@ -51,6 +51,8 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  text-align: right;
+  padding-right: 1rem;
 }
 
 .cell,
