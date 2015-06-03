@@ -5,5 +5,5 @@ QUnit.module('Unit — Month');
 
 test('month.get("weeks") returns the correct first week', function (assert) {
   let month = Month.create({ date: '2015-06-24', events: [{ date: '2015-06-25', name: 'Meeting with blah' }] });
-  assert.equal(month.get('weeks.firstObject.days.firstObject.date'), '2015-05-31');
+  assert.equal(month.get('weeks.firstObject.days.firstObject.formattedDate'), '2015-05-31');
 });
