@@ -4,59 +4,38 @@
     <p>Today's Date: {{date}}</p>
   </section>
 
-{{#el-weekly-calendar date=date events=events as |days|}}
-    <div class="calendar">
-      <div class="row">
-        <div class="cell title">
-        </div>
-        <div class="cell title">
-          Sunday
-        </div>
-        <div class="cell title">
-          Monday
-        </div>
-        <div class="cell title">
-          Tuesday
-        </div>
-        <div class="cell title">
-          Wednesday
-        </div>
-        <div class="cell title">
-          Thursday
-        </div>
-        <div class="cell title">
-          Friday
-        </div>
-        <div class="cell title">
-          Saturday
-        </div>
-      </div>
-    <div class="week">
-      <div class="hours">
-        {{#each days.firstObject.hours as |hour|}}
-          <div>{{hour.formattedHour}}</div>
-        {{/each}}
-      </div>
-      {{#each days as |day|}}
-        <div class="day">
-          <div>
-            {{day.dayName}}
-            {{day.date}}
+  {{#el-weekly-calendar date=date events=events as |days|}}
+      <div class="calendar">
+        <div class="row">
+          <div class="cell title">
           </div>
-          {{#each day.hours as |hour|}}
-            {{#if hour.events}}
-              {{#each hour.events as |event|}}
-                <div>
+          {{#each days as |day|}}
+            <div class="cell title">
+              {{day.dayName}}
+              {{day.date}}
+            </div>
+          {{/each}}
+        </div>
+      <div class="week">
+        <div class="hours">
+          {{#each days.firstObject.hours as |hour|}}
+            <div>{{hour.formattedHour}}</div>
+          {{/each}}
+        </div>
+        {{#each days as |day|}}
+          <div class="hours">
+            {{#each day.hours as |hour|}}
+              <div>
+                {{#each hour.events as |event|}}
                   <strong>
                     {{hour.formattedHour}}: {{event.name}}
                   </strong>
-                </div>
-              {{/each}}
-            {{/if}}
-          {{/each}}
-        </div>
-      {{/each}}
+                {{/each}}
+              </div>
+            {{/each}}
+          </div>
+        {{/each}}
+      </div>
     </div>
-  </div>
-{{/el-weekly-calendar}}
+  {{/el-weekly-calendar}}
 </div>
