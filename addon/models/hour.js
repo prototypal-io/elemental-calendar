@@ -14,6 +14,7 @@ export default Ember.Object.extend({
   }),
 
   init() {
+    this._super(...arguments);
     this.events = this.eventList.forHour(this);
   }
 });

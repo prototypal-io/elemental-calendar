@@ -32,6 +32,7 @@ let Month = Ember.Object.extend({
   }),
 
   init() {
+    this._super(...arguments);
     this.eventList = this.eventList || EventList.create({ events: this.events });
   }
 });
