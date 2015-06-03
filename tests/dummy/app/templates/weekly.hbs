@@ -8,6 +8,8 @@
     <div class="calendar">
       <div class="row">
         <div class="cell title">
+        </div>
+        <div class="cell title">
           Sunday
         </div>
         <div class="cell title">
@@ -30,22 +32,31 @@
         </div>
       </div>
     <div class="week">
-    {{#each days as |day|}}
       <div class="day">
-        {{day.dayName}}
-        {{day.date}}
-        {{#each day.hours as |hour|}}
-          {{hour.formattedHour}}
-          {{#if hour.events}}
-            <strong>Events:</strong>
-            {{#each hour.events as |event|}}
-              <strong>{{event.name}}</strong>
-            {{/each}}
-          {{/if}}
+        {{#each days.firstObject.hours as |hour|}}
+          <div>{{hour.formattedHour}}</div>
         {{/each}}
       </div>
-    {{/each}}
+      {{#each days as |day|}}
+        <div class="day">
+          <div>
+            {{day.dayName}}
+            {{day.date}}
+          </div>
+          {{#each day.hours as |hour|}}
+            {{#if hour.events}}
+              {{#each hour.events as |event|}}
+                <div>
+                  <strong>
+                    {{hour.formattedHour}}: {{event.name}}
+                  </strong>
+                </div>
+              {{/each}}
+            {{/if}}
+          {{/each}}
+        </div>
+      {{/each}}
     </div>
-</div>
+  </div>
 {{/el-weekly-calendar}}
 </div>
