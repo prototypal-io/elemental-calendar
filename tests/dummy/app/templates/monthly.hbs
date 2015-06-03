@@ -7,44 +7,42 @@
   {{#el-monthly-calendar date=date events=events as |weeks|}}
     <div class="calendar">
       <div class="row">
-        <div class="cell">
+        <div class="cell title">
           Sunday
         </div>
-        <div class="cell">
+        <div class="cell title">
           Monday
         </div>
-        <div class="cell">
+        <div class="cell title">
           Tuesday
         </div>
-        <div class="cell">
+        <div class="cell title">
           Wednesday
         </div>
-        <div class="cell">
+        <div class="cell title">
           Thursday
         </div>
-        <div class="cell">
+        <div class="cell title">
           Friday
         </div>
-        <div class="cell">
+        <div class="cell title">
           Saturday
         </div>
       </div>
       {{#each weeks as |week|}}
-        <div class="row">
-          <div class="week">
-            {{#each week.days as |day|}}
-              <div class="day">
-                {{day.dayName}}
-                {{day.date}}
-                {{#if day.events}}
-                  <strong>Events:</strong>
-                  {{#each day.events as |event|}}
-                    <strong>{{event.name}}</strong>
-                  {{/each}}
-                {{/if}}
-              </div>
-            {{/each}}
-          </div>
+        <div class="week">
+          {{#each week.days as |day|}}
+            <div class="day">
+              {{day.dayName}}
+              {{day.date}}
+              {{#if day.events}}
+                <strong>Events:</strong>
+                {{#each day.events as |event|}}
+                  <strong>{{event.name}}</strong>
+                {{/each}}
+              {{/if}}
+            </div>
+          {{/each}}
         </div>
       {{/each}}
     </div>
