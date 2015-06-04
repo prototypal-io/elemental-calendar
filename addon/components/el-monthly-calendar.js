@@ -1,15 +1,16 @@
 import Ember from 'ember';
 import Month from 'el-calendar/models/month';
 import layout from '../templates/components/el-monthly-calendar';
+import EventList from 'el-calendar/models/event-list';
 
 export default Ember.Component.extend({
   layout: layout,
   tagName: '',
-  
   date: null,
   events: null,
 
   month: Ember.computed('date', 'events', function() {
-    return Month.create({ date: this.date, events: this.events });
+    let eventList = EventList.create({ events: this.events });
+    return Month.create({ date: this.date, eventList: eventList });
   })
 });

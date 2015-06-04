@@ -33,12 +33,12 @@ let Week = Ember.Object.extend({
 
   previous() {
     let previousWeek = moment(this.get('_momentDate')).subtract(1, 'weeks');
-    return Week.create({ date: previousWeek.format('YYYY-MM-DD'), eventList: this.eventList });
+    return Week.create({ date: previousWeek.toDate(), eventList: this.eventList });
   },
 
   next() {
     let nextWeek = moment(this.get('_momentDate')).add(1, 'weeks');
-    return Week.create({ date: nextWeek.format('YYYY-MM-DD'), eventList: this.eventList });
+    return Week.create({ date: nextWeek.toDate(), eventList: this.eventList });
   },
 
   month(events) {
