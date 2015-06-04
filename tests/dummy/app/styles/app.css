@@ -58,7 +58,6 @@ body {
 }
 
 .week-hour {
-  padding-bottom: 2rem;
 }
 
 .cell,
@@ -66,11 +65,6 @@ body {
 .hours {
   flex-grow: 1;
   flex-basis: 0;
-}
-
-.week-event {
-  border-bottom: 1px solid #DDD;
-  flex-grow: 1;
 }
 
 .cell {
@@ -84,12 +78,16 @@ body {
 
 .day,
 .week-day {
+  display: flex;
+  flex-direction: column;
   padding: 1rem;
   min-width: 6rem;
   min-height: 6rem;
   border: 1px solid grey;
   margin-left: -1px;
   margin-top: -1px;
+  flex-grow: 1;
+  justify-content: space-between;
 }
 
 .event-column {
@@ -102,16 +100,19 @@ body {
   height: 100%;
 }
 
+.event {
+  position: absolute;
+}
+
 .week-day {
   position: relative;
-  display: flex;
-  flex-direction: column;
   padding: 0;
 }
 
 .day-hour {
-  height: 4rem;
-  border-bottom: 1px solid black;
+  border: 1px solid black;
+  margin-left: -1px;
+  margin-top: -1px;
 }
 .text-center {
   text-align: center;
