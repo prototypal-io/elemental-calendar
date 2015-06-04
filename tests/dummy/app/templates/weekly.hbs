@@ -17,18 +17,20 @@
           {{/each}}
         </div>
       <div class="week">
-        <div class="hours">
+        <div class="week-hours">
           {{#each days.firstObject.hours as |hour|}}
-            <div>{{hour.formattedHour}}</div>
+            <div class="week-hour">{{hour.formattedHour}}</div>
           {{/each}}
         </div>
         {{#each days as |day|}}
-          <div class="day">
+          <div class="week-day">
+            <div class="event-column">
+              {{#each day.events as |event|}}
+                {{weekly-event event=event hour=hour}}
+              {{/each}}
+            </div>
             {{#each day.hours as |hour|}}
-              <div>
-                {{#each hour.events as |event|}}
-                  {{weekly-event event=event hour=hour}}
-                {{/each}}
+              <div class="day-hour">
               </div>
             {{/each}}
           </div>

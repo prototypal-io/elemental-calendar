@@ -45,15 +45,20 @@ body {
   display: flex;
   flex-grow: 1;
   flex-basis: 0;
+  overflow-y: auto;
 }
 
-.hours {
+.week-hours {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   text-align: right;
   white-space: nowrap;
   padding-right: 1rem;
+}
+
+.week-hour {
+  padding-bottom: 2rem;
 }
 
 .cell,
@@ -87,14 +92,27 @@ body {
   margin-top: -1px;
 }
 
+.event-column {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
 .week-day {
+  position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   padding: 0;
 }
 
-
+.day-hour {
+  height: 4rem;
+  border-bottom: 1px solid black;
+}
 .text-center {
   text-align: center;
 }
