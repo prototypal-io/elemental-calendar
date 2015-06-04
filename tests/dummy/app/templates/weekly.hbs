@@ -27,9 +27,7 @@
             {{#each day.hours as |hour|}}
               <div>
                 {{#each hour.events as |event|}}
-                  <strong>
-                    {{hour.formattedHour}}: {{event.name}}
-                  </strong>
+                  {{weekly-event event=event hour=hour}}
                 {{/each}}
               </div>
             {{/each}}
