@@ -1,7 +1,5 @@
 import Ember from 'ember';
 import moment from 'moment';
-import Month from 'el-calendar/models/month';
-import Week from 'el-calendar/models/week';
 import Hour from 'el-calendar/models/hour';
 
 let Day = Ember.Object.extend({
@@ -38,14 +36,6 @@ let Day = Ember.Object.extend({
   init() {
     this._super(...arguments);
     this.events = this.eventList.forDay(this);
-  },
-
-  week(events) {
-    return Week.create({ date: this.date, events: events });
-  },
-
-  month(events) {
-    return Month.create({ date: this.date, events: events });
   }
 });
 
