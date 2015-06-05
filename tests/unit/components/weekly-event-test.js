@@ -9,7 +9,9 @@ test('it renders', function(assert) {
   assert.expect(2);
 
   // Creates the component instance
-  var component = this.subject();
+  var component = this.subject({
+    event: { name: 'Homework due', date: '2015-07-02T03:30' }
+  });
   assert.equal(component._state, 'preRender');
 
   // Renders the component to the page

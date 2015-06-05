@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import layout from '../templates/components/weekly-event';
+import moment from 'moment';
 
 export default Ember.Component.extend({
   layout: layout,
@@ -10,16 +11,27 @@ export default Ember.Component.extend({
   style: Ember.computed(function() {
     let escape = Ember.Handlebars.Utils.escapeExpression;
     return Ember.String.htmlSafe(
-      `left: ${escape(this.calculateLeft())}px;
-       top: ${escape(this.calculateTop())}px;`
+      `bottom: ${escape(this.calculateBottom())}%;
+       top: ${escape(this.calculateTop())}%;`
     );
   }),
 
-  calculateLeft() {
-    return 50;
+  calculateBottom() {
+    return this._calculatePercentage(this.event.date);
   },
 
   calculateTop() {
-    return 100;
+    return this._calculatePercentage(this.event.endDate);
+  },
+
+  _calculatePercentage(date) {
+    let momentDate = moment(date);
+    let hours = momentDate.hours();
+    let minutes = momentDate.minutes();
+    let minutesConverted = hours * 60;
+    let totalMinutes = minutes + minutesConverted;
+    let ratio = totalMinutes / 1440;
+    let percentage = ratio * 100;
+    return Math.floor(percentage * 1000) / 1000;
   }
 });
