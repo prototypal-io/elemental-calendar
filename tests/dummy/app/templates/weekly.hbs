@@ -7,8 +7,7 @@
           </div>
           {{#each days as |day|}}
             <div class="cell title">
-              {{day.dayName}}
-              {{day.formattedDate}}
+              {{formatted-date day.date type='weekly-header'}}
             </div>
           {{/each}}
         </div>

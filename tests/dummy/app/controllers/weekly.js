@@ -4,9 +4,9 @@ export default Ember.Controller.extend({
   date: '2015-06-24',
 
   events: Ember.A([
-    { name: 'Meeting with Joe', startDate: 'June 25, 2015, 2:30 pm', endDate: 'June 25, 2015, 3:30 pm' },
-    { name: 'Coffee with Susan', startDate: 'June 27, 2015, 4:00 pm', endDate: 'June 27, 2015, 4:30 pm' },
-    { name: 'Breakfast with Geico', startDate: 'June 28, 2015, 8:30 am', endDate: 'June 28, 2015, 9:30 am'},
-    { name: 'Taxes due', startDate: 'June 12, 2015, 12:00 am' }
+    { name: 'Meeting with Joe', startDate: '2015-06-25T14:30', endDate: '2015-06-25T15:30' },
+    { name: 'Coffee with Susan', startDate: '2015-06-27T16:00', endDate: '2015-06-27T16:30' },
+    { name: 'Breakfast with Geico', startDate: '2015-06-28T08:30', endDate: '2015-06-28T09:30'},
+    { name: 'Taxes due', startDate: '2015-06-12T00:00' }
   ])
 });
