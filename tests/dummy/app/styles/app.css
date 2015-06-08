@@ -104,6 +104,7 @@ body {
   position: relative;
   background: #F1F0F8;
   border-left: 4px solid #6F6DB0;
+  margin-top: -3px;
 }
 
 .week-day {
