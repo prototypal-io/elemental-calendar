@@ -11,20 +11,22 @@ export default Ember.Component.extend({
   style: Ember.computed(function() {
     let escape = Ember.Handlebars.Utils.escapeExpression;
     return Ember.String.htmlSafe(
-      `bottom: ${escape(this.calculateBottom())}%;
-       top: ${escape(this.calculateTop())}%;`
+      `top: ${escape(this.calculateTop())}%;
+       height: ${escape(this.calculateHeight())}%;`
     );
   }),
 
-  calculateBottom() {
-    return this._calculatePercentage(this.event.date);
-  },
-
   calculateTop() {
-    return this._calculatePercentage(this.event.endDate);
+    return this._calculatePercentageFromTop(this.event.startDate);
   },
 
-  _calculatePercentage(date) {
+  calculateHeight() {
+    let percentageDistanceFromTop = this._calculatePercentageFromTop(this.event.endDate);
+    let height = percentageDistanceFromTop - this.calculateTop();
+    return height;
+  },
+
+  _calculatePercentageFromTop(date) {
     let momentDate = moment(date);
     let hours = momentDate.hours();
     let minutes = momentDate.minutes();
@@ -32,6 +34,6 @@ export default Ember.Component.extend({
     let totalMinutes = minutes + minutesConverted;
     let ratio = totalMinutes / 1440;
     let percentage = ratio * 100;
-    return Math.floor(percentage * 1000) / 1000;
+    return Math.round(percentage * 1000) / 1000;
   }
 });
