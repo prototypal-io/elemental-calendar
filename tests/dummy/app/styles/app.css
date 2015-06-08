@@ -14,31 +14,29 @@ body {
 body {
    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
    font-weight: 300;
-   background: #052049;
 }
 
 .calendar-container {
   display: flex;
+  position: relative;
   height: 100vh;
-}
-
-.sidebar {
-  flex-grow: 1;
-  padding: 1rem 2rem;
-  color: #EEE;
 }
 
 .calendar {
   display: flex;
-  flex-grow: 2;
   flex-direction: column;
   padding: 1rem 2rem 3rem;
-  background: #EEE;
+  background: white;
 }
 
 .row {
   display: flex;
-  height: 3rem;
+  flex-direction: row;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
 }
 
 .week {
@@ -49,15 +47,14 @@ body {
 }
 
 .week-hours {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  list-style: none;
   text-align: right;
   white-space: nowrap;
   padding-right: 1rem;
 }
 
 .week-hour {
+  height: 66px;
 }
 
 .cell,
@@ -78,16 +75,9 @@ body {
 
 .day,
 .week-day {
-  display: flex;
-  flex-direction: column;
   padding: 1rem;
   min-width: 6rem;
   min-height: 6rem;
-  border: 1px solid grey;
-  margin-left: -1px;
-  margin-top: -1px;
-  flex-grow: 1;
-  justify-content: space-between;
 }
 
 .event-column {
@@ -101,7 +91,7 @@ body {
 }
 
 .event {
-  position: absolute;
+  position: relative;
 }
 
 .week-day {
@@ -110,9 +100,10 @@ body {
 }
 
 .day-hour {
-  border: 1px solid black;
-  margin-left: -1px;
+  height: 6rem;
+  border-top: 1px solid grey;
   margin-top: -1px;
+  background: #eee;
 }
 .text-center {
   text-align: center;

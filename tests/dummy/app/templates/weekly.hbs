@@ -1,13 +1,9 @@
 <div class="calendar-container">
-  <section class="sidebar">
-    <h2 id="title">Weekly Calendar</h2>
-    <p>Today's Date: {{date}}</p>
-  </section>
 
   {{#el-weekly-calendar date=date events=events as |days|}}
       <div class="calendar">
-        <div class="row">
-          <div class="cell title">
+        <div class="row week-titles">
+          <div class="cell">
           </div>
           {{#each days as |day|}}
             <div class="cell title">
@@ -17,11 +13,11 @@
           {{/each}}
         </div>
       <div class="week">
-        <div class="week-hours">
+        <ul class="week-hours">
           {{#each days.firstObject.hours as |hour|}}
-            <div class="week-hour">{{hour.formattedHour}}</div>
+            <li class="week-hour">{{hour.formattedHour}}</li>
           {{/each}}
-        </div>
+        </ul>
         {{#each days as |day|}}
           <div class="week-day">
             <div class="event-column">
