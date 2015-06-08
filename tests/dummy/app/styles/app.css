@@ -47,7 +47,12 @@ body {
   overflow-y: auto;
 }
 
+.week-day {
+  height: 1518px;
+}
+
 .week-hours {
+  height: 1518px;
   list-style: none;
   text-align: right;
   white-space: nowrap;
