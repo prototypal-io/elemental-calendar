@@ -19,17 +19,18 @@
           {{/each}}
         </ul>
         {{#each days as |day|}}
-          <div class="week-day">
-            <div class="event-column">
+          <ul class="week-day">
+            <li class="event-column">
               {{#each day.events as |event|}}
                 {{weekly-event event=event}}
               {{/each}}
-            </div>
+            </li>
             {{#each day.hours as |hour|}}
-              <div class="day-hour">
-              </div>
+              <li class="day-hour">
+                <div class="day-half-hour"></div>
+              </li>
             {{/each}}
-          </div>
+          </ul>
         {{/each}}
       </div>
     </div>
