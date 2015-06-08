@@ -1,6 +1,6 @@
 import { moduleForComponent, test } from 'ember-qunit';
 
-moduleForComponent('weekly-event', 'Unit | Component | weekly event', {
+moduleForComponent('calendar-event', 'Unit | Component | calendar event', {
   // Specify the other units that are required for this test
   // needs: ['component:foo', 'helper:bar']
 });

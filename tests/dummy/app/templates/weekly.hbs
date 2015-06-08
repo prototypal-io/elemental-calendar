@@ -22,7 +22,7 @@
           <ul class="week-day">
             <li class="event-column">
               {{#each day.events as |event|}}
-                {{weekly-event event=event}}
+                {{calendar-event event=event}}
               {{/each}}
             </li>
             {{#each day.hours as |hour|}}

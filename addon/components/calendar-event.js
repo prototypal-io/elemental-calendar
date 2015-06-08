@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import layout from '../templates/components/weekly-event';
+import layout from '../templates/components/calendar-event';
 import moment from 'moment';
 
 export default Ember.Component.extend({
