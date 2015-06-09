@@ -8,6 +8,8 @@ export function formattedDate(params, hash = {}) {
     output = momentDate.format('ddd M/D');
   } else if (hash.type === 'monthly-day') {
     output = momentDate.format('D');
+  } else if (hash.type === 'daily-header') {
+    output = momentDate.format('dddd M/D');
   }
   return output;
 }
