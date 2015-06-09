@@ -23,6 +23,7 @@ body {
   table-layout: fixed;
   white-space: nowrap;
   margin-bottom: 2rem;
+  align-self: flex-end;
 }
 
 .control > a {
@@ -67,7 +68,7 @@ body {
   background: white;
   /* placeholder height for the calendar*/
   /* this is viewport height minus the header height */
-  height: calc(100vh - 3rem);
+  height: calc(100vh - 7rem);
 }
 
 .row {
