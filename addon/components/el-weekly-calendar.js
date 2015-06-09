@@ -5,7 +5,7 @@ import EventList from 'el-calendar/models/event-list';
 
 export default Ember.Component.extend({
   layout: layout,
-  tagName: '',
+  classNames: ['calendar'],
   date: null,
   events: null,
 

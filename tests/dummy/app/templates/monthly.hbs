@@ -1,49 +1,40 @@
-<div class="calendar-container">
-  <section class="sidebar">
-    <h2 id="title">Monthly Calendar</h2>
-    <p>Today's Date: {{date}}</p>
-  </section>
-
-  {{#el-monthly-calendar date=date events=events as |weeks|}}
-    <div class="calendar">
-      <div class="row">
-        <div class="cell title">
-          Sunday
-        </div>
-        <div class="cell title">
-          Monday
-        </div>
-        <div class="cell title">
-          Tuesday
-        </div>
-        <div class="cell title">
-          Wednesday
-        </div>
-        <div class="cell title">
-          Thursday
-        </div>
-        <div class="cell title">
-          Friday
-        </div>
-        <div class="cell title">
-          Saturday
-        </div>
-      </div>
-      {{#each weeks as |week|}}
-        <div class="week">
-          {{#each week.days as |day|}}
-            <div class="day">
-              {{day.dayName}}
-              {{day.date}}
-              {{#if day.events}}
-                {{#each day.events as |event|}}
-                  <strong>{{event.name}}</strong>
-                {{/each}}
-              {{/if}}
-            </div>
-          {{/each}}
-        </div>
-      {{/each}}
-    </div>
-  {{/el-monthly-calendar}}
+{{#el-monthly-calendar date=date events=events as |weeks|}}
+<div class="row">
+  <div class="cell title">
+    Sunday
+  </div>
+  <div class="cell title">
+    Monday
+  </div>
+  <div class="cell title">
+    Tuesday
+  </div>
+  <div class="cell title">
+    Wednesday
+  </div>
+  <div class="cell title">
+    Thursday
+  </div>
+  <div class="cell title">
+    Friday
+  </div>
+  <div class="cell title">
+    Saturday
+  </div>
 </div>
+{{#each weeks as |week|}}
+  <div class="week">
+    {{#each week.days as |day|}}
+      <div class="day">
+        {{day.dayName}}
+        {{day.date}}
+        {{#if day.events}}
+          {{#each day.events as |event|}}
+            <strong>{{event.name}}</strong>
+          {{/each}}
+        {{/if}}
+      </div>
+    {{/each}}
+  </div>
+{{/each}}
+{{/el-monthly-calendar}}

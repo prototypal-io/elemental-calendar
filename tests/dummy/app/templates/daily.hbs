@@ -1,28 +1,19 @@
-<div class="calendar-container">
-  <section class="sidebar">
-    <h2 id="title">Daily Calendar</h2>
-    <p>Today's Date: {{date}}</p>
-  </section>
+{{#el-daily-calendar date=date events=events as |hours|}}
+<div class="week">
+  <ul class="week-hours">
+    {{#each hours as |hour|}}
+      <li class="week-hour">{{hour.formattedHour}}</li>
+    {{/each}}
+  </ul>
 
-  {{#el-daily-calendar date=date events=events as |hours|}}
-    <div class="calendar">
-      <div class="week">
-        <div class="week-hours">
-          {{#each hours as |hour|}}
-            <div class="day-hour">{{hour.formattedHour}}</div>
-          {{/each}}
-        </div>
-
-        {{#each hours as |hour|}}
-          <div class="week-hour">
-            <div class="event-column">
-              {{#each hour.events as |event|}}
-                {{calendar-event event=event}}
-              {{/each}}
-            </div>
-          </div>
+  {{#each hours as |hour|}}
+    <div class="week-day">
+      <div class="event-column">
+        {{#each hour.events as |event|}}
+          {{calendar-event event=event}}
         {{/each}}
       </div>
     </div>
-  {{/el-daily-calendar}}
+  {{/each}}
 </div>
+{{/el-daily-calendar}}

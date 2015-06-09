@@ -7,6 +7,7 @@ export default Ember.Component.extend({
   layout: layout,
   date: null,
   events: null,
+  classNames: ['calendar'],
 
   day: Ember.computed('date', 'events', function() {
     let eventList = EventList.create({ events: this.events });

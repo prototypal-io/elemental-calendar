@@ -16,10 +16,8 @@ body {
    font-weight: 300;
 }
 
-.calendar-container {
-  display: flex;
-  position: relative;
-  height: 100vh;
+.control {
+  height: 3rem;
 }
 
 .calendar {
@@ -27,6 +25,9 @@ body {
   flex-direction: column;
   flex-grow: 1;
   background: white;
+  /* placeholder height for the calendar*/
+  /* this is viewport height minus the header height */
+  height: calc(100vh - 3rem);
 }
 
 .row {
