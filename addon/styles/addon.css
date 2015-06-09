@@ -1,0 +1,120 @@
+.el-calendar {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  background: white;
+  /* placeholder height for the calendar*/
+  /* this is viewport height minus the header height */
+  height: calc(100vh - 7rem);
+}
+
+.el-calendar *,
+.el-calendar *:before,
+.el-calendar *:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.el-calendar .row {
+  display: flex;
+  flex-direction: row;
+}
+
+.el-calendar .column {
+  display: flex;
+  flex-direction: column;
+}
+
+.el-calendar .week {
+  display: flex;
+  flex-grow: 1;
+  flex-basis: 0;
+  padding-top: 1rem;
+  overflow-y: auto;
+}
+
+.el-calendar .week-day-full,
+.el-calendar .week-day {
+  height: 1518px;
+}
+
+.el-calendar .week-hours {
+  height: 1518px;
+  list-style: none;
+  text-align: right;
+  white-space: nowrap;
+  padding-right: 1rem;
+}
+
+.el-calendar .week-hour {
+  height: 66px;
+  line-height: 0;
+  margin-top: -3px;
+}
+
+.el-calendar .cell,
+.el-calendar .day,
+.el-calendar .hours {
+  flex-grow: 1;
+  flex-basis: 0;
+}
+
+.el-calendar .cell {
+  min-width: 6rem;
+}
+
+.el-calendar .title {
+  font-weight: 700;
+  padding-bottom: 1rem;
+}
+
+.el-calendar .day,
+.el-calendar .week-day,
+.el-calendar .week-day-full {
+  flex-basis: 14.285%;
+  list-style: none;
+  padding: 1rem;
+  min-width: 6rem;
+  min-height: 6rem;
+}
+
+.el-calendar .week-day-full {
+  flex-basis: 0;
+  flex-grow: 1;
+  padding: 0;
+  position: relative;
+}
+
+.el-calendar .event-column {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.el-calendar .event {
+  position: relative;
+  padding: 0.25rem;
+  background: #F1F0F8;
+  border-left: 4px solid #6F6DB0;
+}
+
+.el-calendar .week-day {
+  position: relative;
+  padding: 0;
+}
+
+.el-calendar .day-hour {
+  height: 63px;
+  border-top: 1px solid #eee;
+}
+
+.el-calendar .day-half-hour {
+  width: 100%;
+  height: 31px;
+  border-bottom: 1px dotted #eee;
+}
