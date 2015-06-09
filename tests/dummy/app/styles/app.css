@@ -14,10 +14,50 @@ body {
 body {
    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
    font-weight: 300;
+   padding: 1rem;
 }
 
 .control {
   height: 3rem;
+  display: table;
+  table-layout: fixed;
+  white-space: nowrap;
+  margin-bottom: 2rem;
+}
+
+.control > a {
+  display: table-cell;
+  position: relative;
+  width: auto;
+  overflow: hidden;
+  color: inherit;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0 1rem;
+  border: 1px solid #DDD;
+  color: #1A1A1A;
+  line-height: 3rem;
+  background: #EEE;
+  transition: background 0.25s linear;
+}
+
+.control > a:first-child {
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+  border-right-width: 0px;
+}
+
+.control > a:last-child {
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+  border-left-width: 0px;
+}
+
+.control > a:active,
+.control > a:hover {
+  color: black;
+  background: #FFF;
 }
 
 .calendar {
