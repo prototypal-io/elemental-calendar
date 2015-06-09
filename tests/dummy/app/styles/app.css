@@ -90,6 +90,7 @@ body {
   overflow-y: auto;
 }
 
+.week-day-full,
 .week-day {
   height: 1518px;
 }
