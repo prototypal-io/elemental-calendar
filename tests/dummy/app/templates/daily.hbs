@@ -6,14 +6,17 @@
     {{/each}}
   </ul>
 
-  {{#each hours as |hour|}}
-    <div class="week-day">
-      <div class="event-column">
+    <ul class="week-day-full">
+      <li class="event-column">
         {{#each hour.events as |event|}}
           {{calendar-event event=event}}
         {{/each}}
-      </div>
-    </div>
-  {{/each}}
+      </li>
+      {{#each hours as |hour|}}
+        <li class="day-hour">
+          <div class="day-half-hour"></div>
+        </li>
+      {{/each}}
+    </ul>
 </div>
 {{/el-daily-calendar}}

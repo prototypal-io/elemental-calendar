@@ -83,12 +83,19 @@ body {
 }
 
 .day,
-.week-day {
+.week-day,
+.week-day-full {
   flex-basis: 14.285%;
   list-style: none;
   padding: 1rem;
   min-width: 6rem;
   min-height: 6rem;
+}
+
+.week-day-full {
+  flex-basis: 0;
+  flex-grow: 1;
+  position: relative;
 }
 
 .event-column {
