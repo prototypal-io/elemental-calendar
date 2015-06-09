@@ -1,4 +1,11 @@
 {{#el-daily-calendar date=model.date events=model.events as |hours|}}
+  <div class="row week-titles">
+    <div class="cell">
+    </div>
+    <div class="cell title">
+      {{formatted-date day.date type='weekly-header'}}
+    </div>
+  </div>
   <div class="week">
     <ul class="week-hours">
       {{#each hours as |hour|}}
