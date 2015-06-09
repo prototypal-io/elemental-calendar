@@ -10,6 +10,8 @@ export function formattedDate(params, hash = {}) {
     output = momentDate.format('D');
   } else if (hash.type === 'daily-header') {
     output = momentDate.format('dddd M/D');
+  } else if (hash.type === 'day-of-week') {
+    output = momentDate.format('dddd');
   }
   return output;
 }

@@ -1,26 +1,10 @@
 {{#el-monthly-calendar date=model.date events=model.events as |weeks|}}
   <div class="row">
-    <div class="cell title">
-      Sunday
-    </div>
-    <div class="cell title">
-      Monday
-    </div>
-    <div class="cell title">
-      Tuesday
-    </div>
-    <div class="cell title">
-      Wednesday
-    </div>
-    <div class="cell title">
-      Thursday
-    </div>
-    <div class="cell title">
-      Friday
-    </div>
-    <div class="cell title">
-      Saturday
-    </div>
+    {{#each weeks.firstObject.days as |day|}}
+      <div class="cell title">
+        {{formatted-date day.date type='day-of-week'}}
+      </div>
+    {{/each}}
   </div>
   {{#each weeks as |week|}}
     <div class="week">
