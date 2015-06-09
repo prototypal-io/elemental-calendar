@@ -1,5 +1,5 @@
 {
-  "name": "el-calendar",
+  "name": "elemental-calendar",
   "version": "0.0.1",
   "description": "Calendar components for Ember.js",
   "directories": {
