@@ -8,8 +8,10 @@
 
     <ul class="week-day-full">
       <li class="event-column">
-        {{#each hour.events as |event|}}
-          {{calendar-event event=event}}
+        {{#each hours as |hour|}}
+          {{#each hour.events as |event|}}
+            {{calendar-event event=event}}
+          {{/each}}
         {{/each}}
       </li>
       {{#each hours as |hour|}}
