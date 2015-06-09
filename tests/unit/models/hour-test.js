@@ -6,9 +6,9 @@ QUnit.module('Unit — Hour');
 
 test('Hour#events returns the correct events when provided an eventList', function (assert) {
   let events = [
-    { name: 'Japanese Studies', date: "2015-08-03T17:30" },
-    { name: 'Geopolitics 446', date: "2015-08-05T08:30" },
-    { name: 'Neuroimmunology 101', date: "2015-08-03T17:15" }
+    { name: 'Japanese Studies', startDate: "2015-08-03T17:30" },
+    { name: 'Geopolitics 446', startDate: "2015-08-05T08:30" },
+    { name: 'Neuroimmunology 101', startDate: "2015-08-03T17:15" }
   ];
   let eventList = EventList.create({ events: events });
   let hour = Hour.create({ datetime: '2015-08-03T17:00', eventList: eventList });

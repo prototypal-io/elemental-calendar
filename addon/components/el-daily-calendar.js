@@ -1,7 +1,7 @@
 import Ember from 'ember';
-import Month from 'el-calendar/models/month';
-import layout from '../templates/components/el-monthly-calendar';
+import layout from '../templates/components/el-daily-calendar';
 import EventList from 'el-calendar/models/event-list';
+import Day from 'el-calendar/models/day';
 
 export default Ember.Component.extend({
   layout: layout,
@@ -9,8 +9,8 @@ export default Ember.Component.extend({
   events: null,
   classNames: ['calendar'],
 
-  month: Ember.computed('date', 'events', function() {
+  day: Ember.computed('date', 'events', function() {
     let eventList = EventList.create({ events: this.events });
-    return Month.create({ date: this.date, eventList: eventList });
+    return Day.create({ date: this.date, eventList: eventList });
   })
 });

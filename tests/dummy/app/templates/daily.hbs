@@ -1,0 +1,31 @@
+{{#el-daily-calendar date=model.date events=model.events as |hours|}}
+  <div class="row week-titles">
+    <div class="cell">
+    </div>
+    <div class="cell title">
+      {{formatted-date model.date type='daily-header'}}
+    </div>
+  </div>
+  <div class="week">
+    <ul class="week-hours">
+      {{#each hours as |hour|}}
+        <li class="week-hour">{{hour.formattedHour}}</li>
+      {{/each}}
+    </ul>
+
+    <ul class="week-day-full">
+      <li class="event-column">
+        {{#each hours as |hour|}}
+          {{#each hour.events as |event|}}
+            {{calendar-event event=event}}
+          {{/each}}
+        {{/each}}
+      </li>
+      {{#each hours as |hour|}}
+        <li class="day-hour">
+          <div class="day-half-hour"></div>
+        </li>
+      {{/each}}
+    </ul>
+  </div>
+{{/el-daily-calendar}}

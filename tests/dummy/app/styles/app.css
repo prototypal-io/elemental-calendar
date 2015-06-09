@@ -14,46 +14,99 @@ body {
 body {
    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
    font-weight: 300;
-   background: #052049;
+   padding: 1rem;
 }
 
-.calendar-container {
-  display: flex;
-  height: 100vh;
+.control {
+  height: 3rem;
+  display: table;
+  table-layout: fixed;
+  white-space: nowrap;
+  margin-bottom: 2rem;
+  align-self: flex-end;
 }
 
-.sidebar {
-  flex-grow: 1;
-  padding: 1rem 2rem;
-  color: #EEE;
+.control > a {
+  display: table-cell;
+  position: relative;
+  width: auto;
+  overflow: hidden;
+  color: inherit;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0 1rem;
+  border: 1px solid #DDD;
+  color: #1A1A1A;
+  line-height: 3rem;
+  background: #EEE;
+  transition: background 0.25s linear;
+}
+
+.control > a:first-child {
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+  border-right-width: 0px;
+}
+
+.control > a:last-child {
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+  border-left-width: 0px;
+}
+
+.active,
+.control > a:active,
+.control > a:hover {
+  color: black;
+  background: #FFF;
 }
 
 .calendar {
   display: flex;
-  flex-grow: 2;
   flex-direction: column;
-  padding: 1rem 2rem 3rem;
-  background: #EEE;
+  flex-grow: 1;
+  background: white;
+  /* placeholder height for the calendar*/
+  /* this is viewport height minus the header height */
+  height: calc(100vh - 7rem);
 }
 
 .row {
   display: flex;
-  height: 3rem;
+  flex-direction: row;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
 }
 
 .week {
   display: flex;
   flex-grow: 1;
   flex-basis: 0;
+  padding-top: 1rem;
+  overflow-y: auto;
 }
 
-.hours {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+.week-day-full,
+.week-day {
+  height: 1518px;
+}
+
+.week-hours {
+  height: 1518px;
+  list-style: none;
   text-align: right;
   white-space: nowrap;
   padding-right: 1rem;
+}
+
+.week-hour {
+  height: 66px;
+  line-height: 0;
+  margin-top: -3px;
 }
 
 .cell,
@@ -61,11 +114,6 @@ body {
 .hours {
   flex-grow: 1;
   flex-basis: 0;
-}
-
-.week-event {
-  border-bottom: 1px solid #DDD;
-  flex-grow: 1;
 }
 
 .cell {
@@ -78,22 +126,54 @@ body {
 }
 
 .day,
-.week-day {
+.week-day,
+.week-day-full {
+  flex-basis: 14.285%;
+  list-style: none;
   padding: 1rem;
   min-width: 6rem;
   min-height: 6rem;
-  border: 1px solid grey;
-  margin-left: -1px;
-  margin-top: -1px;
+}
+
+.week-day-full {
+  flex-basis: 0;
+  flex-grow: 1;
+  padding: 0;
+  position: relative;
+}
+
+.event-column {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.event {
+  position: relative;
+  padding: 0.25rem;
+  background: #F1F0F8;
+  border-left: 4px solid #6F6DB0;
 }
 
 .week-day {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  position: relative;
   padding: 0;
 }
 
+.day-hour {
+  height: 63px;
+  border-top: 1px solid #eee;
+}
+
+.day-half-hour {
+  width: 100%;
+  height: 31px;
+  border-bottom: 1px dotted #eee;
+}
 
 .text-center {
   text-align: center;

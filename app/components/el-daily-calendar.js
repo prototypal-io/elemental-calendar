@@ -1,0 +1,1 @@
+export { default } from 'el-calendar/components/el-daily-calendar';
