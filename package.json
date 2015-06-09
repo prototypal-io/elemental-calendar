@@ -1,7 +1,7 @@
 {
   "name": "el-calendar",
-  "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "version": "0.0.1",
+  "description": "Calendar components for Ember.js",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -11,11 +11,14 @@
     "build": "ember build",
     "test": "ember try:testall"
   },
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:prototypal-io/elemental-calendar.git"
+  },
   "engines": {
     "node": ">= 0.10.0"
   },
-  "author": "",
+  "author": "Prototypal, Inc.",
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.0.2",
