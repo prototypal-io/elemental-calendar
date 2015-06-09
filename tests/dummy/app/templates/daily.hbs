@@ -1,10 +1,10 @@
-{{#el-daily-calendar date=date events=events as |hours|}}
-<div class="week">
-  <ul class="week-hours">
-    {{#each hours as |hour|}}
-      <li class="week-hour">{{hour.formattedHour}}</li>
-    {{/each}}
-  </ul>
+{{#el-daily-calendar date=model.date events=model.events as |hours|}}
+  <div class="week">
+    <ul class="week-hours">
+      {{#each hours as |hour|}}
+        <li class="week-hour">{{hour.formattedHour}}</li>
+      {{/each}}
+    </ul>
 
     <ul class="week-day-full">
       <li class="event-column">
@@ -18,5 +18,5 @@
         </li>
       {{/each}}
     </ul>
-</div>
+  </div>
 {{/el-daily-calendar}}

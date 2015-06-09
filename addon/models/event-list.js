@@ -6,20 +6,23 @@ export default Ember.Object.extend({
 
   dayLookup: Ember.computed('events', function() {
     let lookup = {};
-    this.get('events').forEach(event => {
-      let dateKey = moment(event.startDate).format('YYYY-MM-DD');
-      this._addLookupEntry(lookup, dateKey, event);
-    });
+    if (this.get('events')) {
+      this.get('events').forEach(event => {
+        let dateKey = moment(event.startDate).format('YYYY-MM-DD');
+        this._addLookupEntry(lookup, dateKey, event);
+      });
+    }
     return lookup;
   }),
 
   hourLookup: Ember.computed('events', function() {
     let lookup = {};
-
-    this.get('events').forEach(event => {
-      let datetimeKey = moment(event.startDate).format('YYYY-MM-DD H');
-      this._addLookupEntry(lookup, datetimeKey, event);
-    });
+    if (this.get('events')) {
+      this.get('events').forEach(event => {
+        let datetimeKey = moment(event.startDate).format('YYYY-MM-DD H');
+        this._addLookupEntry(lookup, datetimeKey, event);
+      });
+    }
     return lookup;
   }),
 

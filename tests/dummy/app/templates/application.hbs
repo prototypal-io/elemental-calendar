@@ -1,6 +1,7 @@
 <nav class="control">
-  {{link-to 'Monthly' 'monthly'}}
-  {{link-to 'Weekly' 'weekly'}}
-  {{link-to 'Daily' 'daily'}}
+  <h3>Demos:</h3>
+  {{link-to 'Monthly' 'monthly' todaysDate}}
+  {{link-to 'Weekly' 'weekly' todaysDate}}
+  {{link-to 'Daily' 'daily' todaysDate}}
 </nav>
 {{outlet}}
