@@ -9,7 +9,7 @@ export default Ember.Component.extend({
   date: null,
   events: null,
 
-  week: Ember.computed('date', 'events', function() {
+  week: Ember.computed('date', 'events.[]', function() {
     let eventList = EventList.create({ events: this.events });
     return Week.create({ date: this.date, eventList: eventList });
   })
