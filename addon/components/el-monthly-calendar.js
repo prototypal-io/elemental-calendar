@@ -9,7 +9,7 @@ export default Ember.Component.extend({
   events: null,
   classNames: ['el-calendar'],
 
-  month: Ember.computed('date', 'events', function() {
+  month: Ember.computed('date', 'events.[]', function() {
     let eventList = EventList.create({ events: this.events });
     return Month.create({ date: this.date, eventList: eventList });
   })
