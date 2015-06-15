@@ -2,5 +2,9 @@
 'use strict';
 
 module.exports = {
-  name: 'el-calendar'
+  name: 'el-calendar',
+
+  isDevelopingAddon: function() {
+    return true;
+  }
 };
