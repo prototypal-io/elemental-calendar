@@ -1,5 +1,7 @@
 # elemental-calendar
 
+[![Build Status](https://travis-ci.org/prototypal-io/elemental-calendar.png?branch=master)](https://travis-ci.org/prototypal-io/elemental-calendar)
+
 Documentation coming soon
 
 ## Installation

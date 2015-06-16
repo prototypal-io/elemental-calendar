@@ -16,8 +16,8 @@ test('Day#get("hours") returns the correct hours', function (assert) {
 
 test('Day#events returns the correct events when provided an eventList', function(assert) {
   let events = [
-    { name: 'Basket Weaving', startDate: '2015-07-11T19:20' },
-    { name: 'Economics 101', startDate: '2015-07-13T23:11' }
+    { name: 'Basket Weaving', startDate: '2015-07-11T19:20', endDate: '2015-07-11T19:40' },
+    { name: 'Economics 101', startDate: '2015-07-13T23:11', endDate: '2015-07-13T23:50' }
   ];
   let eventList = EventList.create({ events: events });
   let day = Day.create({ date: '2015-07-11', eventList: eventList });
