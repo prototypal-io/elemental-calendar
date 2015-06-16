@@ -5,16 +5,29 @@ import moment from 'moment';
 export default Ember.Component.extend({
   layout: layout,
   event: null,
-  classNames: ['event'],
+  classNames: ['event', 'event-pos'],
   attributeBindings: ['style'],
 
   style: Ember.computed(function() {
     let escape = Ember.Handlebars.Utils.escapeExpression;
     return Ember.String.htmlSafe(
       `top: ${escape(this.calculateTop())}%;
-       height: ${escape(this.calculateHeight())}%;`
+       height: ${escape(this.calculateHeight())}%;
+       left: ${escape(this.calculateLeft())}%;
+       width: ${escape(this.calculateWidth())}%;`
     );
   }),
+
+  calculateLeft() {
+    let percentageSlice = 100 / this.event.totalLevels;
+    let leftPercentage = this.event.level * percentageSlice;
+    return Math.round(leftPercentage * 10000) / 10000;
+  },
+
+  calculateWidth() {
+    let percentageSlice = 100 / this.event.totalLevels;
+    return Math.round(percentageSlice * 10000) / 10000;
+  },
 
   calculateTop() {
     return this._calculatePercentageFromTop(this.event.startDate);
@@ -23,7 +36,7 @@ export default Ember.Component.extend({
   calculateHeight() {
     let percentageDistanceFromTop = this._calculatePercentageFromTop(this.event.endDate);
     let height = percentageDistanceFromTop - this.calculateTop();
-    return height;
+    return Math.round(height * 10000) / 10000;
   },
 
   _calculatePercentageFromTop(date) {
@@ -34,6 +47,6 @@ export default Ember.Component.extend({
     let totalMinutes = minutes + minutesConverted;
     let ratio = totalMinutes / 1440;
     let percentage = ratio * 100;
-    return Math.round(percentage * 1000) / 1000;
+    return Math.round(percentage * 10000) / 10000;
   }
 });

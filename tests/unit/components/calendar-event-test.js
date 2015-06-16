@@ -10,12 +10,13 @@ test('it renders', function(assert) {
 
   // Creates the component instance
   var component = this.subject({
-    event: { name: 'Homework due', startDate: '2015-07-02T03:30', endDate: '2015-07-02T04:30' }
+    event: { name: 'Homework due', startDate: '2015-07-02T03:30', endDate: '2015-07-02T04:30' },
+    cluster: { levels: 0, events: [] }
   });
   assert.equal(component._state, 'preRender');
 
-  assert.equal(component.calculateTop(), 14.583);
-  assert.equal(component.calculateHeight(), 4.167);
+  assert.equal(component.calculateTop(), 14.5833);
+  assert.equal(component.calculateHeight(), 4.1667);
 
   // Renders the component to the page
   this.render();
