@@ -19,13 +19,13 @@ export default Ember.Component.extend({
   }),
 
   calculateLeft() {
-    let percentageSlice = 100 / this.event.totalLevels;
+    let percentageSlice = 100 / this.event.cluster.totalLevels;
     let leftPercentage = this.event.level * percentageSlice;
     return Math.round(leftPercentage * 10000) / 10000;
   },
 
   calculateWidth() {
-    let percentageSlice = 100 / this.event.totalLevels;
+    let percentageSlice = 100 / this.event.cluster.totalLevels;
     return Math.round(percentageSlice * 10000) / 10000;
   },
 

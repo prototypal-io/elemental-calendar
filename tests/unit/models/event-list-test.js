@@ -1,6 +1,7 @@
 import EventList from 'el-calendar/models/event-list';
 import { test } from 'qunit';
 import Day from 'el-calendar/models/day';
+import Ember from 'ember';
 
 QUnit.module('Unit — EventList');
 
@@ -47,20 +48,44 @@ test('EventList#forDay returns the correct events for multi-day events', functio
   assert.ok(true);
 });
 
-test('EventList#leveledEventsForDay sets the correct levels on events', function(assert) {
+test('EventList#buildClustersForDay builds the correct event clusters', function(assert) {
   let events = [
-    { name: 'Muster the Rohirrim', startDate: '2016-02-20T10:00', endDate: '2016-02-23T14:00' },
-    { name: 'Drinks with Gandalf', startDate: '2016-02-21T21:00', endDate: '2016-02-22T03:00' },
-    { name: 'Prepare Helms Deep', startDate: '2016-02-22T02:00', endDate: '2016-02-23T22:00' },
-    { name: 'Ask Gondor for Aid', startDate: '2016-02-23T13:30', endDate: '2016-02-23T15:30' }
+    { name: 'Alchemy 101', startDate: '2016-09-27T11:00', endDate: '2016-09-27T13:00' },
+    { name: 'Macroeconomics 201', startDate: '2016-09-27T11:30', endDate: '2016-09-27T14:30' },
+    { name: 'Public Speaking 321', startDate: '2016-09-27T16:00', endDate: '2016-09-27T18:00' },
+    { name: 'Statistics 121', startDate: '2016-09-27T15:30', endDate: '2016-09-27T20:00' }
   ];
 
   let eventList = EventList.create({ events: events });
-  let dayWithOneLevel = Day.create({ date: '2016-02-20', eventList: eventList });
-  let dayWithTwoLevels = Day.create({ date: '2016-02-21', eventList: eventList });
-  let dayWithThreeLevels = Day.create({ date: '2016-02-22', eventList: eventList });
+  let day = Day.create({ date: '2016-09-27', eventList: eventList });
+  let clusteredEvents = Ember.A(eventList.buildClusteredEventsForDay(day));
 
-  assert.equal(eventList.leveledEventsForDay(dayWithOneLevel)[0].totalLevels, 1);
-  assert.equal(eventList.leveledEventsForDay(dayWithTwoLevels)[0].totalLevels, 2);
-  assert.equal(eventList.leveledEventsForDay(dayWithThreeLevels)[0].totalLevels, 3);
+  assert.equal(clusteredEvents.length, 4);
+  assert.equal(clusteredEvents.findBy('name', 'Alchemy 101').cluster.startDate, '2016-09-27T11:00');
+  assert.equal(clusteredEvents.findBy('name', 'Alchemy 101').cluster.endDate, '2016-09-27T14:30');
+
+  assert.equal(clusteredEvents.findBy('name', 'Statistics 121').cluster.startDate, '2016-09-27T15:30');
+  assert.equal(clusteredEvents.findBy('name', 'Statistics 121').cluster.endDate, '2016-09-27T20:00');
+
+});
+
+test('EventList#buildLevelsForClusters builds the correct levels for event clusters', function(assert) {
+  let events = [
+    { name: 'Alchemy 101', startDate: '2016-09-27T11:00', endDate: '2016-09-27T13:00' },
+    { name: 'Macroeconomics 201', startDate: '2016-09-27T11:30', endDate: '2016-09-27T14:30' },
+    { name: 'Public Speaking 321', startDate: '2016-09-27T16:00', endDate: '2016-09-27T18:00' },
+    { name: 'Statistics 121', startDate: '2016-09-27T15:30', endDate: '2016-09-27T20:00' }
+  ];
+
+  let eventList = EventList.create({ events: events });
+  let day = Day.create({ date: '2016-09-27', eventList: eventList });
+  let clusteredEvents = Ember.A(eventList.buildClusteredEventsForDay(day));
+
+  assert.equal(clusteredEvents.findBy('name', 'Alchemy 101').level, 0);
+  assert.equal(clusteredEvents.findBy('name', 'Macroeconomics 201').level, 1);
+  assert.equal(clusteredEvents.findBy('name', 'Public Speaking 321').level, 0);
+  assert.equal(clusteredEvents.findBy('name', 'Statistics 121').level, 1);
+
+  assert.equal(clusteredEvents.findBy('name', 'Macroeconomics 201').cluster.totalLevels, 2);
+  assert.equal(clusteredEvents.findBy('name', 'Public Speaking 321').cluster.totalLevels, 2);
 });
