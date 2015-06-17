@@ -97,10 +97,13 @@
 }
 
 .el-calendar .event {
-  position: relative;
   padding: 0.25rem;
   background: #F1F0F8;
   border-left: 4px solid #6F6DB0;
+}
+
+.el-calendar .event-pos {
+  position: absolute;
 }
 
 .el-calendar .week-day {

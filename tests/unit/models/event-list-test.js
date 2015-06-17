@@ -46,3 +46,21 @@ test('EventList#forDay returns the correct events for multi-day events', functio
 
   assert.ok(true);
 });
+
+test('EventList#leveledEventsForDay sets the correct levels on events', function(assert) {
+  let events = [
+    { name: 'Muster the Rohirrim', startDate: '2016-02-20T10:00', endDate: '2016-02-23T14:00' },
+    { name: 'Drinks with Gandalf', startDate: '2016-02-21T21:00', endDate: '2016-02-22T03:00' },
+    { name: 'Prepare Helms Deep', startDate: '2016-02-22T02:00', endDate: '2016-02-23T22:00' },
+    { name: 'Ask Gondor for Aid', startDate: '2016-02-23T13:30', endDate: '2016-02-23T15:30' }
+  ];
+
+  let eventList = EventList.create({ events: events });
+  let dayWithOneLevel = Day.create({ date: '2016-02-20', eventList: eventList });
+  let dayWithTwoLevels = Day.create({ date: '2016-02-21', eventList: eventList });
+  let dayWithThreeLevels = Day.create({ date: '2016-02-22', eventList: eventList });
+
+  assert.equal(eventList.leveledEventsForDay(dayWithOneLevel)[0].totalLevels, 1);
+  assert.equal(eventList.leveledEventsForDay(dayWithTwoLevels)[0].totalLevels, 2);
+  assert.equal(eventList.leveledEventsForDay(dayWithThreeLevels)[0].totalLevels, 3);
+});

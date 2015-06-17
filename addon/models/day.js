@@ -6,6 +6,7 @@ let Day = Ember.Object.extend({
   events: null,
   date: null,
   eventList: null,
+  dateKey: Ember.computed.alias('formattedDate'),
 
   _momentDate: Ember.computed('date', function() {
     return moment(this.date);
@@ -35,7 +36,7 @@ let Day = Ember.Object.extend({
 
   init() {
     this._super(...arguments);
-    this.events = this.eventList.forDay(this);
+    this.events = this.eventList.leveledEventsForDay(this);
   }
 });
 
