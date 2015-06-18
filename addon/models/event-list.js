@@ -32,53 +32,121 @@ export default Ember.Object.extend({
     return lookup;
   }),
 
-  getLeveledEventsForDay(day) {
-    let dateKey = day.get('dateKey');
+  buildClusteredEventsForDay(day) {
+    let dateKey = day.get('dateKey'); // YYYY-MM-DD
     let dayEvents = this.get(`dayLookup.${dateKey}`) || Ember.A([]);
-    let dayLevels = [];
+    let clusters = [];
+
+    if (dayEvents.length !== 0) {
+      clusters.push({});
+    }
 
     dayEvents.forEach(dayEvent => {
-      if (dayLevels.length === 0) {
-        dayEvent.level = 0;
-        dayLevels.push([dayEvent]);
-      } else {
-        for (let level = 0; level < dayLevels.length; level++) {
-          let dayLevel = dayLevels[level];
+      // check that the day event in question does not conflict with ANY cluster
+      let allClear = this._determineClusterAllClear(clusters, dayEvent);
 
-          // check that every event in this level does not conflict with the day event in question
-          let allClear = this._determineLevelAllClear(dayLevel, dayEvent);
-
-          // if there are no conflicts, set event's level, push event into this level, and break!
-          if (allClear) {
-            dayEvent.level = level;
-            dayLevel.push(dayEvent);
-            break;
-          } else if (!dayLevels[level+1]) {
-            // otherwise if there are conflicts, check if the next level exists — if not, make it and break
-            dayEvent.level = level + 1;
-            dayLevels[level+1] = [dayEvent];
-            break;
-          }
-        }
+      if (allClear) {
+        let newCluster = {
+          startDate: dayEvent.startDate,
+          endDate: dayEvent.endDate,
+          events: [dayEvent]
+        };
+        dayEvent.cluster = newCluster;
+        clusters.push(newCluster);
       }
     });
 
-    dayEvents.forEach(event => {
-      event.totalLevels = dayLevels.length;
-    });
+    this.buildLevelsForClusters(clusters);
 
     return dayEvents;
   },
 
-  _determineLevelAllClear(dayLevel, dayEvent) {
-    return dayLevel.every(levelEvent => {
-      let dayEventStart = moment(dayEvent.startDate);
-      let dayEventEnd = moment(dayEvent.endDate);
+  _determineClusterAllClear(clusters, event) {
+    return clusters.every(cluster => {
+      let eventStart = moment(event.startDate);
+      let eventEnd = moment(event.endDate);
+      let clusterStart = moment(cluster.startDate);
+      let clusterEnd = moment(cluster.endDate);
+
+      if (!cluster.startDate) {
+        cluster.startDate = event.startDate;
+        cluster.endDate = event.endDate;
+        cluster.events = [event];
+        event.cluster = cluster;
+        return false;
+      } else if ((eventStart > clusterStart && eventStart < clusterEnd) ||
+                 (eventEnd < clusterEnd && eventEnd > clusterStart) ||
+                 (eventEnd > clusterEnd && eventStart < clusterStart)) {
+        // cluster range collision!
+
+        // if the day event's start is less than the cluster range's start
+        // expand the cluster range's start bounds — if the day event's end is
+        // greater than the cluster range's end, expand the cluster range's end bound
+        if (eventStart < clusterStart) {
+          cluster.startDate = event.startDate;
+        }
+
+        if (eventEnd > clusterEnd) {
+          cluster.endDate = event.endDate;
+        }
+
+        event.cluster = cluster;
+        cluster.events.push(event);
+        return false;
+      } else {
+        // no collision!
+        return true;
+      }
+    });
+  },
+
+  buildLevelsForClusters(clusters) {
+    clusters.forEach(cluster => {
+      let clusterLevels = [];
+
+      cluster.events.forEach(event => {
+        if (clusterLevels.length === 0) {
+          event.level = 0;
+          clusterLevels.push([event]);
+        } else {
+          for (let level = 0; level < clusterLevels.length; level++) {
+            let clusterLevel = clusterLevels[level];
+
+            // check that the event in question does not conflict with ANY cluster event
+            let allClear = this._determineLevelAllClear(clusterLevel, event);
+
+            // if there are no conflicts, set event's level, push event into this level, and break!
+            if (allClear) {
+              event.level = level;
+              clusterLevel.push(event);
+              break;
+            } else if (!clusterLevels[level+1]) {
+              // otherwise if there are conflicts, check if the next level exists — if not, make it and break
+              event.level = level + 1;
+              clusterLevels[level+1] = [event];
+              break;
+            }
+          }
+        }
+      });
+
+      cluster.totalLevels = clusterLevels.length;
+    });
+
+    return clusters;
+  },
+
+  _determineLevelAllClear(clusterLevel, event) {
+    return clusterLevel.every(levelEvent => {
+      // debugger;
+      let eventStart = moment(event.startDate);
+      let eventEnd = moment(event.endDate);
       let levelEventStart = moment(levelEvent.startDate);
       let levelEventEnd = moment(levelEvent.endDate);
 
-      if (!((dayEventStart > levelEventStart && dayEventStart < levelEventEnd) ||
-          (dayEventEnd < levelEventEnd && dayEventEnd > levelEventStart))) {
+      if (!((eventStart >= levelEventStart && eventStart < levelEventEnd) ||
+          (eventEnd <= levelEventEnd && eventEnd > levelEventStart) ||
+          (eventStart < levelEventStart && eventEnd > levelEventEnd))) {
         return true;
       }
     });
@@ -117,8 +185,8 @@ export default Ember.Object.extend({
     return this.get(`dayLookup.${dateKey}`) || Ember.A();
   },
 
-  leveledEventsForDay(day) {
-    return this.getLeveledEventsForDay(day);
+  clusteredEventsForDay(day) {
+    return this.buildClusteredEventsForDay(day);
   },
 
   _addLookupEntry(lookup, timeKey, event) {

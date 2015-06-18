@@ -10,8 +10,7 @@ test('it renders', function(assert) {
 
   // Creates the component instance
   var component = this.subject({
-    event: { name: 'Homework due', startDate: '2015-07-02T03:30', endDate: '2015-07-02T04:30' },
-    cluster: { levels: 0, events: [] }
+    event: { name: 'Homework due', startDate: '2015-07-02T03:30', endDate: '2015-07-02T04:30', cluster: { totalLevels: 1 } },
   });
   assert.equal(component._state, 'preRender');
 
