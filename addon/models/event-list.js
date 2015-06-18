@@ -55,7 +55,6 @@ export default Ember.Object.extend({
         clusters.push(newCluster);
       }
     });
-
     this.buildLevelsForClusters(clusters);
 
     return dayEvents;
@@ -74,8 +73,8 @@ export default Ember.Object.extend({
         cluster.events = [event];
         event.cluster = cluster;
         return false;
-      } else if ((eventStart > clusterStart && eventStart < clusterEnd) ||
-                 (eventEnd < clusterEnd && eventEnd > clusterStart) ||
+      } else if ((eventStart >= clusterStart && eventStart < clusterEnd) ||
+                 (eventEnd <= clusterEnd && eventEnd > clusterStart) ||
                  (eventEnd > clusterEnd && eventStart < clusterStart)) {
         // cluster range collision!
 
@@ -138,7 +137,6 @@ export default Ember.Object.extend({
 
   _determineLevelAllClear(clusterLevel, event) {
     return clusterLevel.every(levelEvent => {
-      // debugger;
       let eventStart = moment(event.startDate);
       let eventEnd = moment(event.endDate);
       let levelEventStart = moment(levelEvent.startDate);
