@@ -12,10 +12,14 @@ let Week = Ember.Object.extend({
   _momentDate: Ember.computed('date', function() {
     return moment(this.date);
   }),
+  
+  _startOfWeekMoment: Ember.computed('_momentDate', function(){
+    return moment(this.get('_momentDate')).startOf('week');
+  }),
 
   days: Ember.computed('_momentDate', function() {
     let days = Ember.A();
-    let startOfWeekMoment = moment(this.get('_momentDate')).startOf('week');
+    let startOfWeekMoment = this.get('_startOfWeekMoment');
 
     for (let i = 0; i < 7; i++) {
       let date = moment(startOfWeekMoment).toDate();
@@ -24,6 +28,11 @@ let Week = Ember.Object.extend({
       days.pushObject(day);
     }
     return days;
+  }),
+  
+  startOfWeekMonthNumber: Ember.computed('_momentDate', function() {
+    let startOfWeekMoment = this.get('_startOfWeekMoment');
+    return startOfWeekMoment.format('M');
   }),
 
   init() {
