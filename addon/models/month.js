@@ -15,19 +15,18 @@ let Month = Ember.Object.extend({
 
   weeks: Ember.computed('_momentDate', function() {
     let momentDate = this.get('_momentDate');
-    // http://momentjs.com/docs/#/displaying/days-in-month/
-    let numberOfDaysInMonth = momentDate.daysInMonth();
     // Set new moment date to first day of the month
     let dayOfMonthMoment = moment(momentDate).startOf('month');
+    let monthNumber = dayOfMonthMoment.format('M');
     let weeks = Ember.A();
 
     let firstWeekDate = dayOfMonthMoment.toDate();
-    let firstWeek = Week.create({ date: firstWeekDate, eventList: this.eventList });
-    weeks.pushObject(firstWeek);
-    for (let i = 7; i < numberOfDaysInMonth; i += 7) {
-      let nextWeek = weeks.get('lastObject').next(this.eventList);
+    let nextWeek = Week.create({ date: firstWeekDate, eventList: this.eventList });
+    do {
       weeks.pushObject(nextWeek);
-    }
+      nextWeek = weeks.get('lastObject').next(this.eventList);
+    } while(nextWeek.get('startOfWeekMonthNumber') === monthNumber);
+
     return weeks;
   }),
 
