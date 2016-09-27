@@ -23,12 +23,12 @@ let Day = Ember.Object.extend({
 
   hours: Ember.computed('_momentDate', function() {
     let hours = Ember.A();
-    let startOfDayMoment = moment(this.get('_momentDate')).startOf('day');
+    let momentDate = this.get('_momentDate').clone();
 
     for (let i = 0; i < 24; i++) {
-      let datetime = moment(startOfDayMoment).toDate();
+      momentDate.hour(i);
+      let datetime = momentDate.toDate();
       let hour = Hour.create({ datetime: datetime, eventList: this.eventList });
-      startOfDayMoment.add(1, 'hours');
       hours.pushObject(hour);
     }
     return hours;

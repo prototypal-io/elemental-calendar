@@ -34,3 +34,21 @@ test('Day#get("dayName") returns the correct day name', function(assert) {
   assert.equal(sunday.get('dayName'), 'Sunday');
   assert.equal(thursday.get('dayName'), 'Thursday');
 });
+
+test('Day#get("hours") returns the correct hours on DST start day', function (assert) {
+  let eventList = EventList.create({ events: Ember.A() });
+  let day = Day.create({ date: '2016-11-06', eventList: eventList });
+
+  assert.equal(day.get('hours.firstObject.formattedHour'), "12:00 am");
+  assert.equal(day.get('hours.lastObject.formattedHour'), "11:00 pm");
+  assert.equal(day.get('hours.length'), 24);
+});
+
+test('Day#get("hours") returns the correct hours on DST end day', function (assert) {
+  let eventList = EventList.create({ events: Ember.A() });
+  let day = Day.create({ date: '2016-03-13', eventList: eventList });
+
+  assert.equal(day.get('hours.firstObject.formattedHour'), "12:00 am");
+  assert.equal(day.get('hours.lastObject.formattedHour'), "11:00 pm");
+  assert.equal(day.get('hours.length'), 24);
+});
