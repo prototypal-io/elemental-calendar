@@ -2,6 +2,7 @@ import EventList from 'el-calendar/models/event-list';
 import { test } from 'qunit';
 import Day from 'el-calendar/models/day';
 import Ember from 'ember';
+import QUnit from 'qunit';
 
 QUnit.module('Unit — EventList');
 

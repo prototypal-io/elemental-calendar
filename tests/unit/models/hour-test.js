@@ -1,6 +1,7 @@
 import Hour from 'el-calendar/models/hour';
 import { test } from 'qunit';
 import EventList from 'el-calendar/models/event-list';
+import QUnit from 'qunit';
 
 QUnit.module('Unit — Hour');
 
