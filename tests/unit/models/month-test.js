@@ -2,6 +2,7 @@ import Month from 'el-calendar/models/month';
 import { test } from 'qunit';
 import Ember from 'ember';
 import EventList from 'el-calendar/models/event-list';
+import QUnit from 'qunit';
 
 QUnit.module('Unit — Month');
 
