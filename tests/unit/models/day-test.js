@@ -1,9 +1,9 @@
 import Day from 'el-calendar/models/day';
-import { test } from 'qunit';
+import { test, module } from 'ember-qunit';
 import EventList from 'el-calendar/models/event-list';
 import Ember from 'ember';
 
-QUnit.module('Unit — Day');
+module('Unit — Day');
 
 test('Day#get("hours") returns the correct hours', function (assert) {
   let eventList = EventList.create({ events: Ember.A() });

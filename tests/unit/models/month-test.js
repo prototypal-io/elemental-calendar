@@ -1,9 +1,9 @@
 import Month from 'el-calendar/models/month';
-import { test } from 'qunit';
+import { test, module } from 'ember-qunit';
 import Ember from 'ember';
 import EventList from 'el-calendar/models/event-list';
 
-QUnit.module('Unit — Month');
+module('Unit — Month');
 
 test('Month#get("weeks") returns an array of week objects with the right days', function (assert) {
   let eventList = EventList.create({ events: Ember.A() });

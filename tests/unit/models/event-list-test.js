@@ -1,9 +1,9 @@
 import EventList from 'el-calendar/models/event-list';
-import { test } from 'qunit';
+import { test, module } from 'ember-qunit';
 import Day from 'el-calendar/models/day';
 import Ember from 'ember';
 
-QUnit.module('Unit — EventList');
+module('Unit — EventList');
 
 test('EventList#forDay returns the correct events for single day events', function (assert) {
   let events = [

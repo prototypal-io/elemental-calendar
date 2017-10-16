@@ -1,9 +1,9 @@
 import Week from 'el-calendar/models/week';
-import { test } from 'qunit';
+import { test, module } from 'ember-qunit';
 import Ember from 'ember';
 import EventList from 'el-calendar/models/event-list';
 
-QUnit.module('Unit — Week');
+module('Unit — Week');
 
 test('Week#get("days") returns the correct first and last days', function (assert) {
   let week = Week.create({ date: '2015-06-19', events: Ember.A() });
