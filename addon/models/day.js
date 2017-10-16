@@ -1,28 +1,30 @@
-import Ember from 'ember';
+import { A } from '@ember/array';
+import { alias } from '@ember/object/computed';
+import EmberObject, { computed } from '@ember/object';
 import moment from 'moment';
 import Hour from 'el-calendar/models/hour';
 
-let Day = Ember.Object.extend({
+let Day = EmberObject.extend({
   events: null,
   date: null,
   eventList: null,
-  dateKey: Ember.computed.alias('formattedDate'),
+  dateKey: alias('formattedDate'),
 
-  _momentDate: Ember.computed('date', function() {
+  _momentDate: computed('date', function() {
     return moment(this.date);
   }),
 
-  formattedDate: Ember.computed('_momentDate', function() {
+  formattedDate: computed('_momentDate', function() {
     return this.get('_momentDate').format('YYYY-MM-DD');
   }),
 
-  dayName: Ember.computed('_momentDate', function() {
+  dayName: computed('_momentDate', function() {
     let weekday = this.get('_momentDate').day();
     return moment().weekday(weekday).format('dddd');
   }),
 
-  hours: Ember.computed('_momentDate', function() {
-    let hours = Ember.A();
+  hours: computed('_momentDate', function() {
+    let hours = A();
     let momentDate = this.get('_momentDate').clone();
 
     for (let i = 0; i < 24; i++) {

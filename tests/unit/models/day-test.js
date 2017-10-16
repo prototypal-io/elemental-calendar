@@ -1,12 +1,12 @@
+import { A } from '@ember/array';
 import Day from 'el-calendar/models/day';
 import { test, module } from 'ember-qunit';
 import EventList from 'el-calendar/models/event-list';
-import Ember from 'ember';
 
 module('Unit — Day');
 
 test('Day#get("hours") returns the correct hours', function (assert) {
-  let eventList = EventList.create({ events: Ember.A() });
+  let eventList = EventList.create({ events: A() });
   let day = Day.create({ date: '2015-07-02', eventList: eventList });
 
   assert.equal(day.get('hours.firstObject.formattedHour'), "12:00 am");
@@ -27,7 +27,7 @@ test('Day#events returns the correct events when provided an eventList', functio
 });
 
 test('Day#get("dayName") returns the correct day name', function(assert) {
-  let eventList = EventList.create({ events: Ember.A() });
+  let eventList = EventList.create({ events: A() });
   let sunday = Day.create({ date: '2015-06-28', eventList: eventList });
   let thursday = Day.create({ date: '2015-06-11', eventList: eventList });
 
@@ -36,7 +36,7 @@ test('Day#get("dayName") returns the correct day name', function(assert) {
 });
 
 test('Day#get("hours") returns the correct hours on DST start day', function (assert) {
-  let eventList = EventList.create({ events: Ember.A() });
+  let eventList = EventList.create({ events: A() });
   let day = Day.create({ date: '2016-11-06', eventList: eventList });
 
   assert.equal(day.get('hours.firstObject.formattedHour'), "12:00 am");
@@ -45,7 +45,7 @@ test('Day#get("hours") returns the correct hours on DST start day', function (as
 });
 
 test('Day#get("hours") returns the correct hours on DST end day', function (assert) {
-  let eventList = EventList.create({ events: Ember.A() });
+  let eventList = EventList.create({ events: A() });
   let day = Day.create({ date: '2016-03-13', eventList: eventList });
 
   assert.equal(day.get('hours.firstObject.formattedHour'), "12:00 am");

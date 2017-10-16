@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
 import moment from 'moment';
 
 export function formattedDate(params, hash = {}) {
@@ -14,4 +14,4 @@ export function formattedDate(params, hash = {}) {
   return output;
 }
 
-export default Ember.Helper.helper(formattedDate);
+export default helper(formattedDate);

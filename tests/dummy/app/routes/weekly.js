@@ -1,11 +1,13 @@
-import Ember from 'ember';
+import { A } from '@ember/array';
+import { Promise as EmberPromise } from 'rsvp';
+import Route from '@ember/routing/route';
 
-export default Ember.Route.extend({
+export default Route.extend({
   model(params) {
-    return new Ember.RSVP.Promise(function(resolve) {
+    return new EmberPromise(function(resolve) {
       resolve({
         date: params.week_date,
-        events: Ember.A([
+        events: A([
           { name: 'Meeting with Joe', startDate: '2015-06-24T16:30', endDate: '2015-06-24T22:30' },
           { name: 'Coffee with Susan', startDate: '2015-06-24T17:00', endDate: '2015-06-24T18:30' },
           { name: 'Coffee with Susan', startDate: '2015-06-24T17:00', endDate: '2015-06-24T18:30' },

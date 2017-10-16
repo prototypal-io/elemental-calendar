@@ -1,15 +1,15 @@
-import Ember from 'ember';
+import EmberObject, { computed } from '@ember/object';
 import moment from 'moment';
 
-export default Ember.Object.extend({
+export default EmberObject.extend({
   events: null,
   datetime: null,
 
-  _momentDateTime: Ember.computed('datetime', function() {
+  _momentDateTime: computed('datetime', function() {
     return moment(this.datetime);
   }),
 
-  formattedHour: Ember.computed('datetime', function() {
+  formattedHour: computed('datetime', function() {
     return this.get('_momentDateTime').format('h:mm a');
   }),
 

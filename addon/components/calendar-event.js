@@ -1,16 +1,19 @@
+import { htmlSafe } from '@ember/string';
+import { computed } from '@ember/object';
+import Component from '@ember/component';
 import Ember from 'ember';
 import layout from '../templates/components/calendar-event';
 import moment from 'moment';
 
-export default Ember.Component.extend({
+export default Component.extend({
   layout: layout,
   event: null,
   classNames: ['event', 'event-pos'],
   attributeBindings: ['style'],
 
-  style: Ember.computed(function() {
+  style: computed(function() {
     let escape = Ember.Handlebars.Utils.escapeExpression;
-    return Ember.String.htmlSafe(
+    return htmlSafe(
       `top: ${escape(this.calculateTop())}%;
        height: ${escape(this.calculateHeight())}%;
        left: ${escape(this.calculateLeft())}%;

@@ -1,10 +1,12 @@
-import Ember from 'ember';
+import { merge } from '@ember/polyfills';
+import { A } from '@ember/array';
+import EmberObject, { computed } from '@ember/object';
 import moment from 'moment';
 
-export default Ember.Object.extend({
+export default EmberObject.extend({
   events: null,
 
-  dayLookup: Ember.computed('events', function() {
+  dayLookup: computed('events', function() {
     let lookup = {};
     let events = this.get('events');
     if (events) {
@@ -34,7 +36,7 @@ export default Ember.Object.extend({
 
   buildClusteredEventsForDay(day) {
     let dateKey = day.get('dateKey'); // YYYY-MM-DD
-    let dayEvents = this.get(`dayLookup.${dateKey}`) || Ember.A([]);
+    let dayEvents = this.get(`dayLookup.${dateKey}`) || A([]);
     let clusters = [];
 
     if (dayEvents.length !== 0) {
@@ -151,7 +153,7 @@ export default Ember.Object.extend({
   },
 
   _cloneEvent(event) {
-    return Ember.merge({}, event);
+    return merge({}, event);
   },
 
   _createContinuationEvent(event, startDate, endDate) {
@@ -162,7 +164,7 @@ export default Ember.Object.extend({
   },
 
 
-  hourLookup: Ember.computed('events', function() {
+  hourLookup: computed('events', function() {
     let lookup = {};
     if (this.get('events')) {
       this.get('events').forEach(event => {
@@ -175,12 +177,12 @@ export default Ember.Object.extend({
 
   forHour(hour) {
     let datetimeKey = moment(hour.get('datetime')).format('YYYY-MM-DD H');
-    return this.get(`hourLookup.${datetimeKey}`) || Ember.A();
+    return this.get(`hourLookup.${datetimeKey}`) || A();
   },
 
   forDay(day) {
     let dateKey = moment(day.get('date')).format('YYYY-MM-DD');
-    return this.get(`dayLookup.${dateKey}`) || Ember.A();
+    return this.get(`dayLookup.${dateKey}`) || A();
   },
 
   clusteredEventsForDay(day) {
@@ -191,7 +193,7 @@ export default Ember.Object.extend({
     if (lookup[timeKey]) {
       lookup[timeKey].push(event);
     } else {
-      lookup[timeKey] = Ember.A([event]);
+      lookup[timeKey] = A([event]);
     }
   }
 });

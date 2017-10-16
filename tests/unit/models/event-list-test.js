@@ -1,7 +1,7 @@
+import { A } from '@ember/array';
 import EventList from 'el-calendar/models/event-list';
 import { test, module } from 'ember-qunit';
 import Day from 'el-calendar/models/day';
-import Ember from 'ember';
 
 module('Unit — EventList');
 
@@ -58,7 +58,7 @@ test('EventList#buildClustersForDay builds the correct event clusters', function
 
   let eventList = EventList.create({ events: events });
   let day = Day.create({ date: '2016-09-27', eventList: eventList });
-  let clusteredEvents = Ember.A(eventList.buildClusteredEventsForDay(day));
+  let clusteredEvents = A(eventList.buildClusteredEventsForDay(day));
 
   assert.equal(clusteredEvents.length, 4);
   assert.equal(clusteredEvents.findBy('name', 'Alchemy 101').cluster.startDate, '2016-09-27T11:00');
@@ -79,7 +79,7 @@ test('EventList#buildLevelsForClusters builds the correct levels for event clust
 
   let eventList = EventList.create({ events: events });
   let day = Day.create({ date: '2016-09-27', eventList: eventList });
-  let clusteredEvents = Ember.A(eventList.buildClusteredEventsForDay(day));
+  let clusteredEvents = A(eventList.buildClusteredEventsForDay(day));
 
   assert.equal(clusteredEvents.findBy('name', 'Alchemy 101').level, 0);
   assert.equal(clusteredEvents.findBy('name', 'Macroeconomics 201').level, 1);
