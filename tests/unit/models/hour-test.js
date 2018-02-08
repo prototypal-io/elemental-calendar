@@ -1,8 +1,8 @@
 import Hour from 'el-calendar/models/hour';
-import { test } from 'qunit';
+import { test, module } from 'ember-qunit';
 import EventList from 'el-calendar/models/event-list';
 
-QUnit.module('Unit — Hour');
+module('Unit — Hour');
 
 test('Hour#events returns the correct events when provided an eventList', function (assert) {
   let events = [

@@ -1,24 +1,25 @@
-import Ember from 'ember';
+import { A } from '@ember/array';
+import EmberObject, { computed } from '@ember/object';
 import moment from 'moment';
 import Week from 'el-calendar/models/week';
 import EventList from 'el-calendar/models/event-list';
 
-let Month = Ember.Object.extend({
+let Month = EmberObject.extend({
   date: null,
   events: null,
   eventList: null,
   _numberOfDaysInPreviousMonth: null,
 
-  _momentDate: Ember.computed('date', function() {
+  _momentDate: computed('date', function() {
     return moment(this.date);
   }),
 
-  weeks: Ember.computed('_momentDate', function() {
+  weeks: computed('_momentDate', function() {
     let momentDate = this.get('_momentDate');
     // Set new moment date to first day of the month
     let dayOfMonthMoment = moment(momentDate).startOf('month');
     let monthNumber = dayOfMonthMoment.format('M');
-    let weeks = Ember.A();
+    let weeks = A();
 
     let firstWeekDate = dayOfMonthMoment.toDate();
     let nextWeek = Week.create({ date: firstWeekDate, eventList: this.eventList });

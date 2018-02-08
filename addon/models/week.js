@@ -1,24 +1,25 @@
-import Ember from 'ember';
+import { A } from '@ember/array';
+import EmberObject, { computed } from '@ember/object';
 import moment from 'moment';
 import Month from 'el-calendar/models/month';
 import Day from 'el-calendar/models/day';
 import EventList from 'el-calendar/models/event-list';
 
-let Week = Ember.Object.extend({
+let Week = EmberObject.extend({
   date: null,
   events: null,
   eventList: null,
 
-  _momentDate: Ember.computed('date', function() {
+  _momentDate: computed('date', function() {
     return moment(this.date);
   }),
   
-  _startOfWeekMoment: Ember.computed('_momentDate', function(){
+  _startOfWeekMoment: computed('_momentDate', function(){
     return moment(this.get('_momentDate')).startOf('week');
   }),
 
-  days: Ember.computed('_momentDate', function() {
-    let days = Ember.A();
+  days: computed('_momentDate', function() {
+    let days = A();
     let startOfWeekMoment = this.get('_startOfWeekMoment');
 
     for (let i = 0; i < 7; i++) {
@@ -30,7 +31,7 @@ let Week = Ember.Object.extend({
     return days;
   }),
   
-  startOfWeekMonthNumber: Ember.computed('_momentDate', function() {
+  startOfWeekMonthNumber: computed('_momentDate', function() {
     let startOfWeekMoment = this.get('_startOfWeekMoment');
     return startOfWeekMoment.format('M');
   }),
