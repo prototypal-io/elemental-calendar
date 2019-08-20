@@ -26,8 +26,8 @@
     <div class="week">
       {{#each week.days as |day|}}
         <div class="day">
-          {{#link-to 'daily' day.formattedDate}}
-            {{formatted-date day.date type='monthly-day'}}
+          {{#link-to "daily" day.formattedDate}}
+            {{formatted-date day.date type="monthly-day"}}
           {{/link-to}}
 
           {{#if day.events}}
