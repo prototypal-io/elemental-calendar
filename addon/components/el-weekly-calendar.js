@@ -1,8 +1,8 @@
 import { computed } from '@ember/object';
 import Component from '@ember/component';
 import layout from '../templates/components/el-weekly-calendar';
-import Week from 'el-calendar/models/week';
-import EventList from 'el-calendar/models/event-list';
+import Week from 'elemental-calendar/models/week';
+import EventList from 'elemental-calendar/models/event-list';
 
 export default Component.extend({
   layout: layout,

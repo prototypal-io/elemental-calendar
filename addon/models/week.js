@@ -1,9 +1,9 @@
 import { A } from '@ember/array';
 import EmberObject, { computed } from '@ember/object';
 import moment from 'moment';
-import Month from 'el-calendar/models/month';
-import Day from 'el-calendar/models/day';
-import EventList from 'el-calendar/models/event-list';
+import Month from 'elemental-calendar/models/month';
+import Day from 'elemental-calendar/models/day';
+import EventList from 'elemental-calendar/models/event-list';
 
 let Week = EmberObject.extend({
   date: null,
@@ -13,7 +13,7 @@ let Week = EmberObject.extend({
   _momentDate: computed('date', function() {
     return moment(this.date);
   }),
-  
+
   _startOfWeekMoment: computed('_momentDate', function(){
     return moment(this.get('_momentDate')).startOf('week');
   }),
@@ -30,7 +30,7 @@ let Week = EmberObject.extend({
     }
     return days;
   }),
-  
+
   startOfWeekMonthNumber: computed('_momentDate', function() {
     let startOfWeekMoment = this.get('_startOfWeekMoment');
     return startOfWeekMoment.format('M');

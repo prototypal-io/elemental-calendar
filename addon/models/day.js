@@ -2,7 +2,7 @@ import { A } from '@ember/array';
 import { alias } from '@ember/object/computed';
 import EmberObject, { computed } from '@ember/object';
 import moment from 'moment';
-import Hour from 'el-calendar/models/hour';
+import Hour from 'elemental-calendar/models/hour';
 
 let Day = EmberObject.extend({
   events: null,

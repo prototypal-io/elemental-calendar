@@ -1,7 +1,7 @@
 import { A } from '@ember/array';
-import Day from 'el-calendar/models/day';
+import Day from 'elemental-calendar/models/day';
 import { module, test } from 'qunit';
-import EventList from 'el-calendar/models/event-list';
+import EventList from 'elemental-calendar/models/event-list';
 
 module('Unit — Day', function() {
   test('Day#get("hours") returns the correct hours', function (assert) {

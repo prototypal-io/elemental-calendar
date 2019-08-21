@@ -1,4 +1,4 @@
-import { formattedDate } from 'el-calendar/helpers/formatted-date';
+import { formattedDate } from 'elemental-calendar/helpers/formatted-date';
 import { module, test } from 'qunit';
 
 module('Unit | Helper | formatted date', function() {

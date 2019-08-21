@@ -1,6 +1,6 @@
-import Hour from 'el-calendar/models/hour';
+import Hour from 'elemental-calendar/models/hour';
 import { module, test } from 'qunit';
-import EventList from 'el-calendar/models/event-list';
+import EventList from 'elemental-calendar/models/event-list';
 
 module('Unit — Hour', function() {
   test('Hour#events returns the correct events when provided an eventList', function (assert) {

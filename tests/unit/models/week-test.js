@@ -1,7 +1,7 @@
 import { A } from '@ember/array';
-import Week from 'el-calendar/models/week';
+import Week from 'elemental-calendar/models/week';
 import { module, test } from 'qunit';
-import EventList from 'el-calendar/models/event-list';
+import EventList from 'elemental-calendar/models/event-list';
 
 module('Unit — Week', function() {
   test('Week#get("days") returns the correct first and last days', function (assert) {

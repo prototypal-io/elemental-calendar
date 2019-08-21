@@ -1,1 +1,1 @@
-export { default } from 'el-calendar/components/calendar-event';
+export { default } from 'elemental-calendar/components/calendar-event';

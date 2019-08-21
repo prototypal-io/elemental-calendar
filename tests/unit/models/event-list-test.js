@@ -1,7 +1,7 @@
 import { A } from '@ember/array';
-import EventList from 'el-calendar/models/event-list';
+import EventList from 'elemental-calendar/models/event-list';
 import { module, test } from 'qunit';
-import Day from 'el-calendar/models/day';
+import Day from 'elemental-calendar/models/day';
 
 module('Unit — EventList', function() {
   test('EventList#forDay returns the correct events for single day events', function (assert) {

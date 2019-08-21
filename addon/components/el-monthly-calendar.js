@@ -1,8 +1,8 @@
 import { computed } from '@ember/object';
 import Component from '@ember/component';
-import Month from 'el-calendar/models/month';
+import Month from 'elemental-calendar/models/month';
 import layout from '../templates/components/el-monthly-calendar';
-import EventList from 'el-calendar/models/event-list';
+import EventList from 'elemental-calendar/models/event-list';
 
 export default Component.extend({
   layout: layout,

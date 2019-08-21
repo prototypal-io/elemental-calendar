@@ -1,8 +1,8 @@
 import { computed } from '@ember/object';
 import Component from '@ember/component';
 import layout from '../templates/components/el-daily-calendar';
-import EventList from 'el-calendar/models/event-list';
-import Day from 'el-calendar/models/day';
+import EventList from 'elemental-calendar/models/event-list';
+import Day from 'elemental-calendar/models/day';
 
 export default Component.extend({
   layout: layout,

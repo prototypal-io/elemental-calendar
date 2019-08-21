@@ -1,7 +1,7 @@
 import { A } from '@ember/array';
-import Month from 'el-calendar/models/month';
+import Month from 'elemental-calendar/models/month';
 import { module, test } from 'qunit';
-import EventList from 'el-calendar/models/event-list';
+import EventList from 'elemental-calendar/models/event-list';
 
 module('Unit — Month', function() {
   test('Month#get("weeks") returns an array of week objects with the right days', function (assert) {

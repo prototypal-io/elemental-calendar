@@ -1,1 +1,1 @@
-export { default, formattedDate } from 'el-calendar/helpers/formatted-date';
+export { default, formattedDate } from 'elemental-calendar/helpers/formatted-date';
