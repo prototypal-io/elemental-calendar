@@ -1,4 +1,4 @@
-import { merge } from '@ember/polyfills';
+import { assign } from '@ember/polyfills';
 import { A } from '@ember/array';
 import EmberObject, { computed } from '@ember/object';
 import moment from 'moment';
@@ -153,7 +153,7 @@ export default EmberObject.extend({
   },
 
   _cloneEvent(event) {
-    return merge({}, event);
+    return assign({}, event);
   },
 
   _createContinuationEvent(event, startDate, endDate) {
