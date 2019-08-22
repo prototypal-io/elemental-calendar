@@ -2,7 +2,8 @@
 
 [![Build Status](https://travis-ci.org/prototypal-io/elemental-calendar.png?branch=master)](https://travis-ci.org/prototypal-io/elemental-calendar)
 
-Documentation coming soon
+Documentation coming soon.
+
 
 ## Installation
 
@@ -12,11 +13,11 @@ Documentation coming soon
 
 * `git clone` this repository
 * `npm install`
-* `bower install`
-* `ember server`
+* `npm start`
 * Visit your app at http://localhost:4200.
 
 ### Running Tests
 
 * `ember test`
 * `ember test --server`
+

@@ -3,7 +3,7 @@
     <div class="cell">
     </div>
     <div class="cell title">
-      {{formatted-date model.date type='daily-header'}}
+      {{formatted-date model.date type="daily-header"}}
     </div>
   </div>
   <div class="week">
@@ -21,6 +21,7 @@
           {{/each}}
         {{/each}}
       </li>
+      {{! template-lint-disable unused-block-params }}
       {{#each hours as |hour|}}
         <li class="day-hour">
           <div class="day-half-hour"></div>

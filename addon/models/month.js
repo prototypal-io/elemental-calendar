@@ -1,8 +1,8 @@
 import { A } from '@ember/array';
 import EmberObject, { computed } from '@ember/object';
 import moment from 'moment';
-import Week from 'el-calendar/models/week';
-import EventList from 'el-calendar/models/event-list';
+import Week from 'elemental-calendar/models/week';
+import EventList from 'elemental-calendar/models/event-list';
 
 let Month = EmberObject.extend({
   date: null,
